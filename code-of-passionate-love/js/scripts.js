@@ -349,8 +349,7 @@ function createBackgroundVideo() {
     backgroundVideo.setAttribute("width", appWidth);
     
     backgroundVideo.setAttribute("frameborder", "0");
-    backgroundVideo.setAttribute("src", "https://youtube.com/embed/wB2zL2P0gPA?autoplay=1&mute=1&controls=0&playlist=wB2zL2P0gPA&loop=1&loop=1");
-
+    backgroundVideo.setAttribute("src", "https://youtube.com/embed/LBF4lC4li7I?autoplay=1&mute=1&controls=0&playlist=LBF4lC4li7I&loop=1&loop=1");
     backgroundVideoContainer.appendChild(backgroundVideo);
 
 }
