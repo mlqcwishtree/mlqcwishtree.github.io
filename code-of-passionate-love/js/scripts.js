@@ -49,8 +49,8 @@ let timesWished = 0;
 // resources
 let stamina = 150;
 let gold = 100000;
-let gems = 100000;
-let galaxyWishCoupon = 500;
+let gems = 10000000;
+let galaxyWishCoupon = 5000;
 let purchasesLeftToday = 999999;
 let ownLimited = 0;
 // let freeCountdown = 0;
