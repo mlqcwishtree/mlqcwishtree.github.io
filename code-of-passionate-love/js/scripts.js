@@ -355,8 +355,7 @@ function createBackgroundVideo() {
 }
 
 function removeBackgroundVideo() {
-    let backgroundVideoContainer = document.getElementById("videoBackgroundContainer");
-    backgroundVideoContainer.removeChild(backgroundVideoContainer.firstChild);
+    document.getElementById("backgroundVideo").remove();
 }
 
 
