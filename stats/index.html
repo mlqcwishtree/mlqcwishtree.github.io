@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="#">
+    <meta name="author" content="Hyruleismyrule">
+    <title>Stats • Wish Tree Simulator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/small.css" rel="stylesheet">
+    <link href="css/medium.css" rel="stylesheet">
+    <link href="css/large.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Fontawesome Icons -->
+    <script src="https://kit.fontawesome.com/7d69b1e6ff.js" crossorigin="anonymous"></script>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_package_v0.16/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_package_v0.16/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_package_v0.16/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon_package_v0.16/site.webmanifest">
+    <link rel="mask-icon" href="assets/favicon_package_v0.16/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <header>
+        <div class="header-info">
+            <h1>Mr. Love Queen's Choice</h1>
+            <h2>Wish Tree Simulator</h2>
+            <div class="linkContainer">
+                <a href="../index.html"><button class="linkButton">Home</button></a>
+                <!-- <button class="linkButton"><a href="../index.html">Home</a></button> -->
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="stats">
+            <h1>Pulling Stats</h1>
+            <div class="last-10-pull">
+                <h2>Last 10 pull:</h2>
+                <span id="last10pull"></span>
+            </div>
+            <div class="last-1-pull">
+                <h2>Last 1 pull:</h2>
+                <span id="last1pull"></span>
+            </div>
+            <div class="most-common-rarity">
+                <h2>Most Pulled Karma</h2>
+                <h3>Most pulled karma</h3>
+                <span id="mostCommonKarma"></span>
+    
+                <h3>Most pulled R karma</h3>
+                <span id="mostCommonRKarma"></span>
+    
+                <h3>Most pulled SR karma</h3>
+                <span id="mostCommonSRKarma"></span>
+    
+                <h3>Most pulled SSR karma</h3>
+                <span id="mostCommonSSRKarma"></span>
+    
+                <h3>Most pulled SP karma</h3>
+                <span id="mostCommonSPKarma"></span>
+            </div>
+            <div class="num-rarity-obtained">
+                <h2>Number of Karma Pulled</h2>
+    
+                <h3>Number of R karma pulled</h3>
+                <span id="numRKarmaObtained"></span>
+    
+                <h3>Number of SR karma pulled</h3>
+                <span id="numSRKarmaObtained"></span>
+    
+                <h3>Number of SSR karma pulled</h3>
+                <span id="numSSRKarmaObtained"></span>
+    
+                <h3>Number of SP karma pulled</h3>
+                <span id="numSPKarmaObtained"></span>
+            </div>
+            <div class="king-stats">
+                <h2>King Stats</h2>
+                <h3>SSR Kings Obtained</h3>
+                <span id="SSRKingsObtained"></span>
+    
+                <h3>Number of R king karma</h3>
+                <span id="numRKingsObtained"></span>
+    
+                <h3>Number of SR king karma</h3>
+                <span id="numSRKingsObtained"></span>
+    
+                <h3>Number of SSR king karma</h3>
+                <span id="numSSRKingsObtained"></span>
+            </div>
+            
+            <div class="times-pulled">
+                <h2>Times Pulled</h2>
+    
+                <h3>Total Pulls</h3>
+                <span id="totalTimesPulled"></span>
+    
+                <div class="spoiler-toggle">
+                    <!-- <button>Show Spoilers</button> -->
+                    <h3>Show Spoilers</h3>
+                    <label class="switch">
+                        <input id="agreeToSpoilers" type="checkbox" onclick="toggleSpoilers()">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+    
+                <h3>Standard Gem</h3>
+                <span id="standardGemTimesPulled"></span>
+    
+                <h3>Code of Passionate Love</h3>
+                <span id="codeOfPassionateLoveTimesPulled"></span>
+    
+                <h3 id="appetencyLabel" class="spoiler">Appetency</h3>
+                <span class="spoiler" id="appetencyTimesPulled"></span>
+            </div>
+            <div class="character-stats">
+                <h2>Number of Karmas Pulled by Character</h2>
+    
+                <h3>Lucien</h3>
+                <span id="numLucienKarmas"></span>
+    
+                <h3>Victor</h3>
+                <span id="numVictorKarmas"></span>
+    
+                <h3>Gavin</h3>
+                <span id="numGavinKarmas"></span>
+    
+                <h3>Kiro</h3>
+                <span id="numKiroKarmas"></span>
+    
+                <h2>Lucien Stats</h2>
+    
+                <h3>Most Common Karma</h3>
+                <span id="mostCommonLucienKarma"></span>
+    
+                <h3>Most Common R Karma</h3>
+                <span id="mostCommonLucienRKarma"></span>
+    
+                <h3>Most Common SR Karma</h3>
+                <span id="mostCommonLucienSRKarma"></span>
+    
+                <h3>Most Common SSR Karma</h3>
+                <span id="mostCommonLucienSSRKarma"></span>
+    
+                <h3>Most Common SP Karma</h3>
+                <span id="mostCommonLucienSPKarma"></span>
+    
+    
+                <h2>Victor Stats</h2>
+    
+                <h3>Most Common Karma</h3>
+                <span id="mostCommonVictorKarma"></span>
+    
+                <h3>Most Common R Karma</h3>
+                <span id="mostCommonVictorRKarma"></span>
+    
+                <h3>Most Common SR Karma</h3>
+                <span id="mostCommonVictorSRKarma"></span>
+    
+                <h3>Most Common SSR Karma</h3>
+                <span id="mostCommonVictorSSRKarma"></span>
+    
+                <h3>Most Common SP Karma</h3>
+                <span id="mostCommonVictorSPKarma"></span>
+    
+    
+                <h2>Gavin Stats</h2>
+    
+                <h3>Most Common Karma</h3>
+                <span id="mostCommonGavinKarma"></span>
+    
+                <h3>Most Common R Karma</h3>
+                <span id="mostCommonGavinRKarma"></span>
+    
+                <h3>Most Common SR Karma</h3>
+                <span id="mostCommonGavinSRKarma"></span>
+    
+                <h3>Most Common SSR Karma</h3>
+                <span id="mostCommonGavinSSRKarma"></span>
+    
+                <h3>Most Common SP Karma</h3>
+                <span id="mostCommonGavinSPKarma"></span>
+    
+    
+                <h2>Kiro Stats</h2>
+    
+                <h3>Most Common Karma</h3>
+                <span id="mostCommonKiroKarma"></span>
+                
+                <h3>Most Common R Karma</h3>
+                <span id="mostCommonKiroRKarma"></span>
+    
+                <h3>Most Common SR Karma</h3>
+                <span id="mostCommonKiroSRKarma"></span>
+    
+                <h3>Most Common SSR Karma</h3>
+                <span id="mostCommonKiroSSRKarma"></span>
+    
+                <h3>Most Common SP Karma</h3>
+                <span id="mostCommonKiroSPKarma"></span>
+            </div>
+            <!-- <div class="karma-obtained">
+                <h2>Karma Obtained</h2>
+
+                <h3>List of Unobtained Karma</h3>
+                <span id="karmaNotObtained"></span>
+
+                <h3>List of Karma Obtained</h3>
+                <span id="karmaObtained"></span>
+    
+                
+            </div> -->
+            <button class="clear" onclick="clearLocalStorage()">Delete all Records</button>
+        </div>
+        
+    </main>
+    <footer>
+        <div class="footer-info">
+            <p>Special Thanks to PikaGodnPray (Discord), GAMING 事件簿 (<a href="https://www.youtube.com/channel/UCc6M42ixIsemSLrjur1dH-A" target="_blank">YouTube</a>) and yafu Red (<a href="https://www.youtube.com/channel/UCdZB9zDS4hpUnTvZskDr-lg" target="_blank">YouTube</a>)  for donating footage!</p>
+            <p>Special Thanks to @rose.of.autumn (<a href="https://www.instagram.com/rose.of.autumn/?hl=en" target="_blank">Instagram</a>) for allowing me to use her translations!</p>
+            <!-- <hr> -->
+            <p>To report a problem, message Hyruleismyrule #9289 on Discord.</p>
+        </div>
+    </footer>
+    <!-- javaScript -->
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{
+    "wishTrees": [
+        {
+            "name": "Standard Gem",
+            "folderName": "standard-gem",
+            "spoiler": "false"
+        },
+        {
+            "name": "Code of Passionate Love",
+            "folderName": "code-of-passionate-love",
+            "spoiler": "false"
+        },
+        {
+            "name": "Appetency",
+            "folderName": "appetency",
+            "spoiler": "true"
+        }
+    ]
+}
