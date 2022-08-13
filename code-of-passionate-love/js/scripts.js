@@ -215,6 +215,137 @@ function buy1() {
     updateCosts();
     purchasesLeftToday -= 1;
     updatePurchaseLimit();
+    updateStats(karmas);
+}
+
+function updateStats(karmas) {
+
+    // last 1/10 pull
+    if (karmas.length == 1) {
+        let newLocalStorageItem = JSON.stringify(karmas);
+        updateLocalStorage("last1pull", newLocalStorageItem);
+
+        // Total times wished
+        let oldLocalStorageItem = JSON.parse(localStorage.getItem('totalTimesPulled'))
+        newLocalStorageItem = oldLocalStorageItem + 1;
+        updateLocalStorage("totalTimesPulled", newLocalStorageItem);
+
+        // Standard Gem times wished
+        oldLocalStorageItem = JSON.parse(localStorage.getItem('codeOfPassionateLoveTimesPulled'));
+        newLocalStorageItem = oldLocalStorageItem + 1;
+        updateLocalStorage("codeOfPassionateLoveTimesPulled", newLocalStorageItem);
+    }
+    else {
+        let newLocalStorageItem = JSON.stringify(karmas);
+        updateLocalStorage("last10pull", newLocalStorageItem);
+        // console.log(localStorage.last10pull);
+
+        // Total times wished
+        let oldLocalStorageItem = JSON.parse(localStorage.getItem('totalTimesPulled'));
+        newLocalStorageItem = oldLocalStorageItem + 10;
+        updateLocalStorage("totalTimesPulled", newLocalStorageItem);
+
+        // Standard Gem times wished
+        oldLocalStorageItem = JSON.parse(localStorage.getItem('codeOfPassionateLoveTimesPulled'));
+        newLocalStorageItem = oldLocalStorageItem + 10;
+        updateLocalStorage("codeOfPassionateLoveTimesPulled", newLocalStorageItem);
+    }
+
+    // Karmas
+
+    let oldKarmaObtained = JSON.parse(localStorage.getItem('karmaObtained'));
+
+    if (oldKarmaObtained) {
+        // Previous karma obtained
+        // console.log("Previous Karma Obtained.");
+
+        let prepedKarmas = oldKarmaObtained;
+
+        // localStorage.clear();
+
+        for (let i = 0; i < karmas.length; i++) {
+            let karmaCharacter = karmas[i].character;
+            let karmaTitle = karmas[i].title;
+            let dup = false;
+
+            for (let j = 0; j < prepedKarmas.length; j++) {
+
+                let prepedKarmaCharacter = prepedKarmas[j].character;
+                let prepedKarmaTitle = prepedKarmas[j].title;
+
+                if (dup != true) {
+                    if (karmaTitle == prepedKarmaTitle && karmaCharacter == prepedKarmaCharacter) {
+
+                        prepedKarmas[j].timesPulled += 1;
+                        dup = true;
+                    }
+                }
+            }
+
+            if (dup != true) {
+                karmas[i]["timesPulled"] = 1;
+                prepedKarmas.push(karmas[i]);
+            }
+
+        }
+
+        let stringPrepedKarmas = JSON.stringify(prepedKarmas);
+        updateLocalStorage("karmaObtained", stringPrepedKarmas);
+
+        // let newKarmaObtained = JSON.parse(localStorage.getItem('karmaObtained'));
+        // console.log(newKarmaObtained);
+
+    }
+    else {
+        // No previous karma obtained
+        // console.log("No previous karma obtained.");
+
+        let prepedKarmas = [];
+        
+        let firstKarma = karmas[0];
+        firstKarma["timesPulled"] = 1;
+        prepedKarmas.push(firstKarma);
+
+        // localStorage.clear();
+
+        for (let i = 1; i < karmas.length; i++) {
+            let karmaCharacter = karmas[i].character;
+            let karmaTitle = karmas[i].title;
+            let dup = false;
+
+            for (let j = 0; j < prepedKarmas.length; j++) {
+
+                let prepedKarmaCharacter = prepedKarmas[j].character;
+                let prepedKarmaTitle = prepedKarmas[j].title;
+
+                if (dup != true) {
+                    if (karmaTitle == prepedKarmaTitle && karmaCharacter == prepedKarmaCharacter) {
+
+                        prepedKarmas[j].timesPulled += 1;
+                        dup = true;
+                    }
+                }
+            }
+
+            if (dup != true) {
+                karmas[i]["timesPulled"] = 1;
+                prepedKarmas.push(karmas[i]);
+            }
+
+        }
+
+        let stringPrepedKarmas = JSON.stringify(prepedKarmas);
+        updateLocalStorage("karmaObtained", stringPrepedKarmas);
+
+        // let newKarmaObtained = JSON.parse(localStorage.getItem('karmaObtained'));
+        // console.log(newKarmaObtained);
+
+    }
+
+}
+
+function updateLocalStorage(setName, setItems) {
+    localStorage.setItem(setName, setItems);
 }
 
 function buy10() {
@@ -225,14 +356,11 @@ function buy10() {
         galaxyWishCoupon = 0;
         gems -= (10 - galaxyWishCoupon) * 180;
     }
-    // else if (gems < 1800) {
     else {
         alert("You don't have enough gems! Let me get you some more!");
         gems += 10000;
     }
-    // else {
-    //     gems -= 1800;
-    // }
+ 
     updateResources()
     let timesPulled = 10;
     karmas = [];
@@ -244,12 +372,89 @@ function buy10() {
             karmas.push(draw1());
         }
     }
-    // console.log(karmas);
+
+    // Test Karmas
+
+    // karmas =
+    // [
+    //     {
+    //         "rarity": "R",
+    //         "character": "Lucien",
+    //         "title": "Detailed Narration",
+    //         "stat": "Decision",
+    //         "king": "false"
+    //     },
+    //     {
+    //         "rarity": "R",
+    //         "character": "Lucien",
+    //         "title": "Archive",
+    //         "stat": "Creativity",
+    //         "king": "false"
+    //     },
+    //     {
+    //         "rarity": "R",
+    //         "character": "Lucien",
+    //         "title": "Detailed Narration",
+    //         "stat": "Decision",
+    //         "king": "false"
+    //     },
+    //     {
+    //         "rarity": "R",
+    //         "character": "Gavin",
+    //         "title": "Upwind",
+    //         "stat": "Execution",
+    //         "king": "false"
+    //     },
+    //     {
+    //         "rarity": "SP",
+    //         "character": "Lucien",
+    //         "title": "Law of Gravity",
+    //         "stat": "Execution",
+    //         "king": "false"
+    //     },
+    //     {
+    //         "rarity": "R",
+    //         "character": "Gavin",
+    //         "title": "Rock and a Hard Place",
+    //         "stat": "Execution",
+    //         "king": "false"
+    //     },
+    //     {
+    //         "rarity": "R",
+    //         "character": "Gavin",
+    //         "title": "Whetstone",
+    //         "stat": "Execution",
+    //         "king": "false"
+    //     },
+    //     {
+    //         "rarity": "R",
+    //         "character": "Lucien",
+    //         "title": "Detailed Narration",
+    //         "stat": "Decision",
+    //         "king": "false"
+    //     },
+    //     {
+    //         "rarity": "SP",
+    //         "character": "Gavin",
+    //         "title": "Dream Traveler",
+    //         "stat": "Creativity",
+    //         "king": "false"
+    //     },
+    //     {
+    //         "rarity": "SP",
+    //         "character": "Lucien",
+    //         "title": "Law of Gravity",
+    //         "stat": "Execution",
+    //         "king": "false"
+    //     }
+    // ];
+
     wishAnimation(timesPulled, karmas);
     timesWished = timesWished + 10;
     updateCosts();
     purchasesLeftToday -= 10;
     updatePurchaseLimit();
+    updateStats(karmas);
 }
 
 function guarenteedSRPlus() {
@@ -267,6 +472,11 @@ function guarenteedSRPlus() {
     else {
         let karmaArray = "SR";
         karma = pickKarma(karmaArray);
+    }
+
+    if (karma.rarity == "R") {
+        karma = guarenteedSRPlus();
+        // console.log("SR guarenteed backup");
     }
 
     return karma;
@@ -349,7 +559,10 @@ function createBackgroundVideo() {
     backgroundVideo.setAttribute("width", appWidth);
     
     backgroundVideo.setAttribute("frameborder", "0");
+    
+
     backgroundVideo.setAttribute("src", "https://youtube.com/embed/LBF4lC4li7I?autoplay=1&mute=1&controls=0&playlist=LBF4lC4li7I&loop=1&loop=1");
+
     backgroundVideoContainer.appendChild(backgroundVideo);
 
 }
@@ -358,15 +571,75 @@ function removeBackgroundVideo() {
     document.getElementById("backgroundVideo").remove();
 }
 
+function checkForSpecial(karmas, displayedKarma) {
+    
+    specialRemoveDisplayedKarma(karmas, displayedKarma);
+    
+    let SSRorSP = false;
+       
+    while (SSRorSP == false || displayedKarma < 9) {
+
+        if (karmas[displayedKarma].rarity == "SP" || karmas[displayedKarma].rarity == "SSR") {
+            if (displayedKarma != 0) {
+
+                SSRorSP = true;
+                
+                break;
+            } else {
+                displayedKarma += 1;
+            }
+        }
+        else {
+            displayedKarma += 1;
+        }
+
+        if (displayedKarma == 10) {
+            displayThumbnails(karmas);
+            break;
+        }
+
+    }
+
+    let karma = karmas[displayedKarma];
+    displayedKarma += 1;
+
+    displayKarma(karma, displayedKarma, karmas);
+
+}
+
+function specialRemoveDisplayedKarma(karmas, displayedKarma) {
+    let resultsContainer = document.getElementById("resultsContainer");
+
+    if (karmas.length == 1) {
+        console.log("specialRemoveDisplayedKarma 2");
+        console.log("displayThumbnails 6");
+        displayThumbnails(karmas);
+    }
+    else {
+        while (resultsContainer.firstChild) {
+            resultsContainer.removeChild(resultsContainer.firstChild);
+        }
+        if (displayedKarma < 10) {
+            displayedKarma += 1;
+            if (displayedKarma == 9) {
+                displayThumbnails(karmas);
+            }
+        }
+        else {
+            displayThumbnails(karmas);
+        }
+    }
+}
 
 
 function wishAnimation(timesPulled, karmas) {
     removeBackgroundVideo();
+
     let appContainer = document.getElementById("app-container");
 
     let videoContainer = document.getElementById("videoContainer");
     let videoElement = document.createElement("video");
-    videoElement.autoplay = true;
+   
     videoElement.muted = true;
 
     let height = appContainer.offsetHeight;
@@ -379,20 +652,18 @@ function wishAnimation(timesPulled, karmas) {
 
     let sourceElement = document.createElement("source");
     sourceElement.setAttribute("type", "video/mp4");
+    
     videoElement.appendChild(sourceElement);
 
     if (timesPulled == 1) {
-        // sourceElement.setAttribute("src", "../assets/videos/hf-pull1.mp4");
         sourceElement.setAttribute("src", "../assets/videos/1-pull-copl.mp4");
     }
     else {
-        // sourceElement.setAttribute("src", "../assets/videos/hf-pull10.mp4");
         sourceElement.setAttribute("src", "../assets/videos/10-pull-copl.mp4");
     }
 
-    videoElement.onended = function () {
-        videoElement.remove();
-    };
+    videoElement.play();
+    videoElement.addEventListener('ended', function() { videoElement.remove(); });
 
     displayResults(karmas);
 }
@@ -402,7 +673,7 @@ function rarityAnimation(rarity, character) {
 
     let videoContainer = document.getElementById("videoContainer");
     let videoElement = document.createElement("video");
-    videoElement.autoplay = true;
+    // videoElement.autoplay = true;
     videoElement.muted = true;
 
     let height = appContainer.offsetHeight;
@@ -420,9 +691,8 @@ function rarityAnimation(rarity, character) {
     // ex. ssr-lucien
     sourceElement.setAttribute("src", "../assets/videos/" + rarity.toLowerCase() + "-" + character.toLowerCase() + ".mp4");
 
-    videoElement.onended = function () {
-        videoElement.remove();
-    };
+    videoElement.play();
+    videoElement.addEventListener('ended', function() { videoElement.remove(); });
 
 }
 
@@ -431,7 +701,7 @@ function SPAnimation(title, character) {
 
     let videoContainer = document.getElementById("videoContainer");
     let videoElement = document.createElement("video");
-    videoElement.autoplay = true;
+   
     videoElement.muted = true;
 
     let height = appContainer.offsetHeight;
@@ -447,47 +717,83 @@ function SPAnimation(title, character) {
     videoElement.appendChild(sourceElement);
 
     // ex. gavin-obsession-1
-    if (title == "Obsession" || title == "Preferance" || title == "Clinging" || title == "Tenderness") {
+    if (title == "Obsession" || title == "Preference" || title == "Clinging" || title == "Tenderness") {
         sourceElement.setAttribute("src", "../assets/videos/" + character.toLowerCase() + "-" + title.toLowerCase() + "-1.mp4");
     }
     else {
-        sourceElement.setAttribute("src", "../assets/videos/ssr" + "-" + character.toLowerCase() + ".mp4");
+        sourceElement.setAttribute("src", "../assets/videos/sp" + "-" + character.toLowerCase() + ".mp4");
     }
 
 
-    videoElement.onended = function () {
-        videoElement.remove();
-    };
+    videoElement.play();
+    videoElement.addEventListener('ended', function() { videoElement.remove(); });
 }
 
-function finalSPAnimation(title, character) {
-    if (title.toLowerCase() == "obsession" || title.toLowerCase() == "preferance" || title.toLowerCase() == "clinging" || title.toLowerCase() == "tenderness") {
-        let appContainer = document.getElementById("app-container");
+function finalSPAnimation(karma) {
 
-        let videoContainer = document.getElementById("videoContainer");
-        let videoElement = document.createElement("video");
-        videoElement.autoplay = true;
-        videoElement.muted = true;
-    
-        let height = appContainer.offsetHeight;
-        let width = appContainer.offsetWidth;
-    
-        videoElement.setAttribute("height", height);
-        videoElement.setAttribute("width", width);
-    
-        videoContainer.appendChild(videoElement);
-    
-        let sourceElement = document.createElement("source");
-        sourceElement.setAttribute("type", "video/mp4");
-        videoElement.appendChild(sourceElement);
-    
-        // ex. gavin-obsession-2
-        sourceElement.setAttribute("src", "../assets/videos/" + character.toLowerCase() + "-" + title.toLowerCase() + "-2.mp4");
+    let rarity = karma.rarity;
 
+    if (rarity == "SP") {
+        let character = karma.character;
+        let title = karma.title;
+
+        if (title == "Obsession" || title == "Preference" || title == "Clinging" || title == "Tenderness") {
+            if (!document.getElementById("finalAnimation")) {
+                let appContainer = document.getElementById("app-container");
     
-        videoElement.onended = function () {
-            videoElement.remove();
-        };
+                let videoContainer = document.getElementById("videoContainer");
+                let videoElement = document.createElement("video");
+              
+                videoElement.muted = true;
+            
+                let height = appContainer.offsetHeight;
+                let width = appContainer.offsetWidth;
+            
+                videoElement.setAttribute("height", height);
+                videoElement.setAttribute("width", width);
+            
+                videoContainer.appendChild(videoElement);
+            
+                let sourceElement = document.createElement("source");
+                sourceElement.setAttribute("type", "video/mp4");
+                videoElement.appendChild(sourceElement);
+            
+                // ex. gavin-obsession-2
+                sourceElement.setAttribute("src", "../assets/videos/" + character.toLowerCase() + "-" + title.toLowerCase() + "-2.mp4");
+        
+            
+                videoElement.play();
+                videoElement.addEventListener('ended', function() { videoElement.remove(); });
+            }
+            
+        }
+        else {
+            if (!document.getElementById("finalAnimation")) {
+                let appContainer = document.getElementById("app-container");
+    
+                let videoContainer = document.getElementById("videoContainer");
+                let videoElement = document.createElement("video");
+                
+                videoElement.muted = true;
+            
+                let height = appContainer.offsetHeight;
+                let width = appContainer.offsetWidth;
+            
+                videoElement.setAttribute("height", height);
+                videoElement.setAttribute("width", width);
+            
+                videoContainer.appendChild(videoElement);
+            
+                let sourceElement = document.createElement("source");
+                sourceElement.setAttribute("type", "video/mp4");
+                videoElement.appendChild(sourceElement);
+        
+                sourceElement.setAttribute("src", "../assets/videos/sp" + "-" + character.toLowerCase() + "-2.mp4");
+        
+                videoElement.play();
+                videoElement.addEventListener('ended', function() { videoElement.remove(); });
+            }
+        }
     }
 }
 
@@ -516,8 +822,6 @@ function displayKarma(karma, displayedKarma, karmas) {
         let character = karma.character;
         let title = karma.title;
 
-        // I currently don't have the sp 
-        // if (rarity == "SSR" || rarity == "SP") {
         if (rarity == "SSR") {
             rarityAnimation(rarity, character);
         }
@@ -526,6 +830,8 @@ function displayKarma(karma, displayedKarma, karmas) {
         }
 
         let stringKarmas = JSON.stringify(karmas);
+
+        let stringKarma = JSON.stringify(karma);
 
         let resultsContainer = document.getElementById("resultsContainer");
 
@@ -539,8 +845,8 @@ function displayKarma(karma, displayedKarma, karmas) {
         // Results Header "You Got"
         let karmaHeader = document.createElement("div");
         karmaHeader.setAttribute("class", "karmaHeader");
-        karmaHeader.setAttribute("id", "karmaHeader");
-        karmaHeader.setAttribute("onclick", 'removeDisplayedKarma(' + stringKarmas + ', ' + displayedKarma + ')');
+        karmaHeader.setAttribute("id", "karmaHeader1");
+        karmaHeader.setAttribute("onclick", 'removeDisplayedKarma(' + stringKarmas + ', ' + displayedKarma + ', ' + stringKarma + ')');
 
         let karmaHeaderText = document.createElement("div");
         karmaHeaderText.setAttribute("id", "karmaHeaderText");
@@ -555,7 +861,7 @@ function displayKarma(karma, displayedKarma, karmas) {
         karmaRarityIMG.setAttribute("src", rarityIconURL);
         karmaRarityIMG.setAttribute("alt", rarity);
         karmaRarityIMG.setAttribute("class", "karma-rarity");
-        karmaRarityIMG.setAttribute("onclick", 'removeDisplayedKarma(' + stringKarmas + ', ' + displayedKarma + ')');
+        karmaRarityIMG.setAttribute("onclick", 'removeDisplayedKarma(' + stringKarmas + ', ' + displayedKarma + ', ' + stringKarma + ')');
 
         // Karma Image
         let karmaImgURL = getKarmaImgURL(karma);
@@ -563,7 +869,7 @@ function displayKarma(karma, displayedKarma, karmas) {
         let karmaImgContainer = document.createElement("div");
         karmaImgContainer.setAttribute("id", "karmaImgContainer");
         karmaImgContainer.setAttribute("class", "karmaImgContainer");
-        karmaImgContainer.setAttribute("onclick", 'removeDisplayedKarma(' + stringKarmas + ', ' + displayedKarma + ')');
+        karmaImgContainer.setAttribute("onclick", 'removeDisplayedKarma(' + stringKarmas + ', ' + displayedKarma + ', ' + stringKarma + ')');
 
         let karmaIMG = document.createElement("img");
         karmaIMG.setAttribute("src", karmaImgURL);
@@ -576,13 +882,13 @@ function displayKarma(karma, displayedKarma, karmas) {
         let nameContainer = document.createElement("div");
         nameContainer.setAttribute("id", "nameContainer");
         nameContainer.textContent = character;
-        nameContainer.setAttribute("onclick", 'removeDisplayedKarma(' + stringKarmas + ', ' + displayedKarma + ')');
+        nameContainer.setAttribute("onclick", 'removeDisplayedKarma(' + stringKarmas + ', ' + displayedKarma + ', ' + stringKarma + ')');
 
         // Stars
         let starOverflow = document.createElement("div");
         starOverflow.setAttribute("class", "starOverflow");
         starOverflow.setAttribute("id", "starOverflow");
-        starOverflow.setAttribute("onclick", 'removeDisplayedKarma(' + stringKarmas + ', ' + displayedKarma + ')');
+        starOverflow.setAttribute("onclick", 'removeDisplayedKarma(' + stringKarmas + ', ' + displayedKarma + ', ' + stringKarma + ')');
 
         let starContainer = document.createElement("div");
         starContainer.appendChild(nameContainer);
@@ -590,19 +896,29 @@ function displayKarma(karma, displayedKarma, karmas) {
         starContainer.setAttribute("id", "starContainer");
 
         let starIMG = document.createElement("img");
-        starIMG.setAttribute("src", "../assets/resources/stars.png");
+
+        if (rarity == "R") {
+            starIMG.setAttribute("src", "../assets/resources/5-stars.png");
+        }
+        else if (rarity == "SR") {
+            starIMG.setAttribute("src", "../assets/resources/6-stars.png");
+        }
+        else {
+            starIMG.setAttribute("src", "../assets/resources/7-stars.png");
+        }
+
         starIMG.setAttribute("alt", "1star");
         starIMG.setAttribute("id", "starIMG");
         starContainer.appendChild(starIMG);
         starIMG.setAttribute("class", "star-img");
-        starContainer.setAttribute("onclick", 'removeDisplayedKarma(' + stringKarmas + ', ' + displayedKarma + ')');
+        starContainer.setAttribute("onclick", 'removeDisplayedKarma(' + stringKarmas + ', ' + displayedKarma + ', ' + stringKarma + ')');
 
         // Title
         let karmaTitle = document.createElement("div");
         karmaTitle.setAttribute("class", "karmaTitle");
         karmaTitle.setAttribute("id", "karmaTitle");
         karmaTitle.textContent = title;
-        karmaTitle.setAttribute("onclick", 'removeDisplayedKarma(' + stringKarmas + ', ' + displayedKarma + ')');
+        karmaTitle.setAttribute("onclick", 'removeDisplayedKarma(' + stringKarmas + ', ' + displayedKarma + ', ' + stringKarma + ')');
 
         // Share
         let shareContainer = document.createElement("button");
@@ -624,7 +940,7 @@ function displayKarma(karma, displayedKarma, karmas) {
         let skipContainer = document.createElement("button");
         skipContainer.setAttribute("class", "skipContainer");
         skipContainer.setAttribute("id", "skipContainer");
-        skipContainer.setAttribute("onclick", 'displayThumbnails(' + stringKarmas + ')');
+        skipContainer.setAttribute("onclick", 'checkForSpecial(' + stringKarmas + ', ' + displayedKarma + ')');
 
         let skipText = document.createElement("div");
         skipText.setAttribute("id", "skipText");
@@ -667,14 +983,11 @@ function getKarmaImgURL(karma) {
     return karmaImgURL;
 }
 
-function removeDisplayedKarma(karmas, displayedKarma) {
-    let resultsContainer = document.getElementById("resultsContainer");
+function removeDisplayedKarma(karmas, displayedKarma, karma) {
 
-    // SP check
-    if (karmas[displayedKarma].rarity == "SP") {
-        finalSPAnimation(title, character);
-    }
-    
+
+
+    let resultsContainer = document.getElementById("resultsContainer");
 
     if (displayKarma == 9) {
         displayThumbnails(karmas);
@@ -687,10 +1000,13 @@ function removeDisplayedKarma(karmas, displayedKarma) {
             resultsContainer.removeChild(resultsContainer.firstChild);
         }
         if (displayedKarma < 9) {
+            finalSPAnimation(karma);
+
             displayedKarma += 1;
             displayKarma(karmas[displayedKarma], displayedKarma, karmas);
         }
         else {
+            finalSPAnimation(karma);
             displayThumbnails(karmas);
         }
     }
@@ -765,7 +1081,6 @@ function displayThumbnails(karmas) {
 
         let summaryKarmaBox = document.createElement("div");
         summaryKarmaBox.setAttribute("class", "summaryKarmaBox " + stat.toLowerCase());
-        // summaryKarmaBox.setAttribute("class", karmas[i].stat.toLowerCase());
         summaryKarma.appendChild(summaryKarmaBox);
 
         let summaryRarity = document.createElement("img");
@@ -789,7 +1104,17 @@ function displayThumbnails(karmas) {
 
         let summaryStars = document.createElement("img");
         summaryStars.setAttribute("class", "summaryStars");
-        summaryStars.setAttribute("src", "../assets/resources/stars.png");
+
+        if (rarity == "R") {
+            summaryStars.setAttribute("src", "../assets/resources/5-stars.png");
+        }
+        else if (rarity == "SR") {
+            summaryStars.setAttribute("src", "../assets/resources/6-stars.png");
+        }
+        else {
+            summaryStars.setAttribute("src", "../assets/resources/7-stars.png");
+        }
+
         summaryStars.setAttribute("alt", "1star");
         starBox.appendChild(summaryStars);
 
@@ -956,21 +1281,16 @@ function placeGrids(appWidth) {
     // Redeem
     let redeemButton = document.getElementById("redeem-button");
     redeemButton.style.fontSize = appWidth / 30 + "px";
-    // redeemButton.style.width = Math.round(appWidth / 4.5) + "px";
-    // redeemButton.style.height = Math.round(appWidth / 15) + "px";
+    
     redeemButton.style.width = appWidth / 10 + "px";
     redeemButton.style.height = appWidth / 10 + "px";
     redeemButton.style.marginLeft = "-" + appWidth / 7.5 + "px";
     redeemButton.style.marginTop = appWidth / 50 + "px";
 
-    // let redeemContainer = document.getElementById("redeem-container");
-    // redeemContainer.style.marginLeft = "-" + appWidth / 10 + "px";
-
     let redeemIMG = document.getElementById("redeem-img");
     redeemIMG.style.width = appWidth / 10 + "px";
     redeemIMG.style.marginLeft = "-" + appWidth / 40 + "px";
     redeemIMG.style.marginTop = "-" + appWidth / 30 + "px";
-    // redeemIMG.style.marginRight = "-" + appWidth / 100 + "px";
 
     let redeemTxt = document.getElementById("redeem-txt");
     redeemTxt.style.marginTop = appWidth / 30 + "px";
@@ -982,8 +1302,7 @@ function placeGrids(appWidth) {
     dropButton.style.fontSize = appWidth / 32 + "px";
     dropButton.style.width = appWidth / 10 + "px";
     dropButton.style.height = appWidth / 10 + "px";
-    // dropButton.style.padding = appWidth / 90 + "px";
-    // dropButton.style.marginTop = appWidth / 50 + "px";
+
 
     // mission
     let missionButton = document.getElementById("mission-button");
@@ -1006,7 +1325,7 @@ function placeGrids(appWidth) {
     // record svg
     let recordSVG = document.getElementById("recordSVG");
     recordSVG.style.width = appWidth / 20 + "px";
-    // recordSVG.style.marginLeft = "-" + Math.round(appWidth / 110) + "px";
+
 
     let redeemBoxImg = document.getElementById("redeem-box-img");
     redeemBoxImg.style.width = appWidth / 18 + "px";
@@ -1016,7 +1335,6 @@ function placeGrids(appWidth) {
     let redeemImgBoxContainer = document.getElementById("redeem-number");
     redeemImgBoxContainer.style.width = appWidth / 6 + "px";
     redeemImgBoxContainer.style.height = appWidth / 25 + "px";
-    // redeemImgBoxContainer.style.marginTop = appWidth / 150 + "px";
 
     let redeemNUMContainer = document.getElementById("redeemNUM");
     redeemNUMContainer.style.marginLeft = appWidth / 35 + "px";
@@ -1051,29 +1369,6 @@ function placeGrids(appWidth) {
     eventWish.style.height = appWidth / 10 + "px";
     eventWish.style.marginTop = appWidth / 20 + "px";
 
-    // Preview
-    // let previewBTN = document.getElementById("previewBTN");
-    // previewBTN.style.fontSize = Math.round(appWidth / 30) + "px";
-    // previewBTN.style.height = Math.round(appWidth / 9) + "px";
-    // previewBTN.style.width = Math.round(appWidth / 9) + "px";
-    // previewBTN.style.marginLeft = "-" + Math.round(appWidth / 100) + "px";
-
-    // Own Limited
-    // let limitedContainer = document.getElementById("limitedContainer");
-    // limitedContainer.style.fontSize = Math.round(appWidth / 35) + "px";
-    // limitedContainer.style.height = Math.round(appWidth / 23) + "px";
-    // limitedContainer.style.marginTop = Math.round(appWidth / 18) + "px";
-    // limitedContainer.style.marginLeft = "-" + Math.round(appWidth / 20) + "px";
-
-    // let ownP = document.getElementById("ownP");
-    // ownP.style.marginTop = Math.round(appWidth / 200) + "px";
-    // ownP.style.marginLeft = Math.round(appWidth / 40) + "px";
-
-    // Fouth Row
-    // let fourthRow = document.getElementById("fourthRow");
-    // let fourthRC = appWidth / 2;
-    // fourthRC = "repeat(auto-fill, " + fourthRC + "px)";
-    // fourthRow.style.gridTemplateColumns = fourthRC;
 
     // info
     let eventInfo = document.getElementById("event-info-button");
@@ -1081,8 +1376,6 @@ function placeGrids(appWidth) {
     eventInfo.style.height = appWidth / 20 + "px";
     eventInfo.style.fontSize = appWidth / 25 + "px";
     eventInfo.style.marginTop = "-" + appWidth / 40 + "px";
-    // eventInfo.style.marginLeft = appWidth / 80 + "px";
-    // eventInfo.style.marginTop = "-" + appWidth / 20 + "px";
 
     // info time
     let infoTime = document.getElementById("event-time");
@@ -1098,7 +1391,6 @@ function placeGrids(appWidth) {
     let eventInfoRow = document.getElementById("event-info-row");
     eventInfoRow.style.width = appWidth / 2 + "px";
     eventInfoRow.style.marginBottom = appWidth / 50 + "px";
-    // eventInfoRow.style.marginTop= "-" + appWidth / 50 + "px";
 
     // event share
     let eventShare = document.getElementById("event-share-button");
@@ -1172,10 +1464,6 @@ function placeGrids(appWidth) {
     let eventLimitedgwc = document.getElementById("eventLimitedgwc");
     eventLimitedgwc.style.marginTop = "-" + appWidth / 22 + "px";
 
-
-    // let right4row2 = document.getElementById("right4row2");
-    // right4row2.style.marginLeft = "-" + appWidth + "px";
-    // right4row2.style.width = appWidth / 3 + "px";
 
     // Row 5
     let fifthRow = document.getElementById("row5");
@@ -1259,10 +1547,9 @@ function placeGrids(appWidth) {
 }
 
 
-// This is the results being displayed
 function sizeResultsKarma(appWidth) {
     if (document.getElementById("karmaImgContainer")) {
-        let karmaHeader = document.getElementById("karmaHeader");
+        let karmaHeader = document.getElementById("karmaHeader1");
         let karmaHeaderText = document.getElementById("karmaHeaderText");
 
         let karmaImgContainer = document.getElementById("karmaImgContainer");
@@ -1341,11 +1628,6 @@ function sizeResultsKarma(appWidth) {
     }
 }
 
-// let missing = {
-//     addEventListener: function() {}
-// };  // a "null" element
-  
-// (document.querySelector('.summaryBox') || missing).addEventListener(...);
 
 // Summary Karma
 function summaryKarmaSizes() {
@@ -1433,21 +1715,6 @@ function summaryKarmaSizes() {
         element.style.marginLeft = width / 300 + "px";
     });
 }
-
-
-// Note, Drawing 1 and 10 works, a video plays for SSR and
-// a summary box shows up. The images and video are really laggy
-// online and will need to be optamized.
-// Redeem, Preview, Back, and drop rates need to have
-// functionality added.
-// New icons need to be added for karma recieved for the first time
-// Local storage and analytics need to be added.
-// Animation for karma drawn needs to be added.
-// A no-img img needs to be added.
-// Main img optimized size is
-// 684 X 1045
-// Thumbnail optamized size is
-// 114 X 114
 
 
 // drop-rate
@@ -1630,7 +1897,7 @@ function buildPreviewKarma(array, previewBox) {
 
         let summaryKarmaBox = document.createElement("div");
         summaryKarmaBox.setAttribute("class", "summaryKarmaBox " + stat.toLowerCase());
-        // summaryKarmaBox.setAttribute("class", karmas[i].stat.toLowerCase());
+    
         summaryKarma.appendChild(summaryKarmaBox);
 
         let summaryRarity = document.createElement("img");
