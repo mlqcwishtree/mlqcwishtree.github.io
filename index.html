@@ -33,36 +33,54 @@
         <div class="header-info">
             <h1>Mr. Love Queen's Choice</h1>
             <h2>Wish Tree Simulator</h2>
+            <div class="linkContainer">
+                <a href="stats/index.html"><button class="linkButton">Stats</button></a>
+            </div>
         </div>
     </header>
     <main>
         <div class="wish-icon-grid">
 
-            <div class="wish-tree-icon">
-                <a href="standard-gem/index.html">
-                    <img src="assets/resources/gem-tree-icon.png" alt="Gem Tree">
-                    <!-- <p>Gem Tree</p> -->
-                </a>
+            <div class="no-spoiler">
+                <div class="wish-tree-icon">
+                    <a href="standard-gem/index.html">
+                        <img src="assets/resources/gem-tree-icon.png" alt="Gem Tree">
+                        <!-- <p>Gem Tree</p> -->
+                    </a>
+                </div>
+    
+                <div class="wish-tree-icon copl">
+                    <a href="code-of-passionate-love/index.html">
+                        <img src="assets/resources/code-of-passionate-love-icon.png" alt="Code of Passionate Love">
+                        <!-- <p>Code of Passionate Love</p> -->
+                    </a>
+                </div>
             </div>
-
-            <div class="wish-tree-icon copl">
-                <a href="code-of-passionate-love/index.html">
-                    <img src="assets/resources/code-of-passionate-love-icon.png" alt="Code of Passionate Love">
-                    <!-- <p>Code of Passionate Love</p> -->
-                </a>
+            
+            <div class="spoiler-toggle">
+                <!-- <button>Show Spoilers</button> -->
+                <h3>Show Spoilers</h3>
+                <label class="switch">
+                    <input id="agreeToSpoilers" type="checkbox" onclick="toggleSpoilers()">
+                    <span class="slider round"></span>
+                </label>
             </div>
-
-            <!-- <div class="wish-tree-icon  spoiler">
-                <a href="appetency/index.html">
-                    <img src="assets/resources/appetency-cn-icon.png" alt="Appetency">
-                </a>
-            </div> -->
+            <div class="yes-spoiler" onmousedown="return false" onselectstart="return false">
+                <div class="wish-tree-icon">
+                    <!-- <a href="appetency/index.html" id="appetency"> -->
+                    <a href="#" id="appetency" class="spoiler">
+                        <img src="assets/resources/appetency-cn-icon.png" alt="Appetency">
+                    </a>
+                </div>
+            </div>
+            
 
         </div>
     </main>
     <footer>
         <div class="footer-info">
-            <p>Special Thanks to PikaGodnPray on Discord for donating footage!</p>
+            <p>Special Thanks to PikaGodnPray (Discord), GAMING 事件簿 (<a href="https://www.youtube.com/channel/UCc6M42ixIsemSLrjur1dH-A" target="_blank">YouTube</a>) and yafu Red (<a href="https://www.youtube.com/channel/UCdZB9zDS4hpUnTvZskDr-lg" target="_blank">YouTube</a>)  for donating footage!</p>
+            <p>Special Thanks to @rose.of.autumn (<a href="https://www.instagram.com/rose.of.autumn/?hl=en" target="_blank">Instagram</a>) for allowing me to use her translations!</p>
             <!-- <hr> -->
             <p>To report a problem, message Hyruleismyrule #9289 on Discord.</p>
         </div>
