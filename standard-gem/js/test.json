@@ -1,0 +1,42 @@
+[
+    {
+        "rarity": "SR",
+        "character": "Gavin",
+        "title": "Sincere Instruction",
+        "stat": "Execution",
+        "king": "false",
+        "timesPulled": 1
+    },
+    {
+        "rarity": "R",
+        "character": "Lucien",
+        "title": "Archive",
+        "stat": "Creativity",
+        "king": "false",
+        "timesPulled": 1
+    },
+    {
+        "rarity": "R",
+        "character": "Lucien",
+        "title": "Detailed Narration",
+        "stat": "Decision",
+        "king": "false",
+        "timesPulled": 6
+    },
+    {
+        "rarity": "R",
+        "character": "Gavin",
+        "title": "Upwind",
+        "stat": "Execution",
+        "king": "false",
+        "timesPulled": 1
+    },
+    {
+        "rarity": "R",
+        "character": "Gavin",
+        "title": "Whetstone",
+        "stat": "Execution",
+        "king": "false",
+        "timesPulled": 1
+    }
+]

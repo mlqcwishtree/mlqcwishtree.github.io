@@ -551,4 +551,8 @@ body {
   margin: 0;
   margin-top: -0.2rem;
 }
+
+#SRendured {
+  pointer-events: none;
+}
 /*# sourceMappingURL=small.css.map */
