@@ -1,0 +1,32 @@
+{
+    "eventSSR": [
+        {
+            "rarity": "SSR",
+            "character": "Gavin",
+            "title": "Captured",
+            "stat": "Affinity",
+            "king": "false"
+        },
+        {
+            "rarity": "SSR",
+            "character": "Kiro",
+            "title": "Desires",
+            "stat": "Execution",
+            "king": "false"
+        },
+        {
+            "rarity": "SSR",
+            "character": "Lucien",
+            "title": "Infection",
+            "stat": "Execution",
+            "king": "false"
+        },
+        {
+            "rarity": "SSR",
+            "character": "Victor",
+            "title": "Drenched",
+            "stat": "Decision",
+            "king": "false"
+        }
+    ]
+}
