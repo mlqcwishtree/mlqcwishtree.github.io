@@ -1,5 +1,47 @@
-@media only screen and (max-width: 600px) {
-    // body {
-    //   background-color: lightblue;
-    // }
+@media only screen and (min-width: 600px) {
+  
+  .header-info, .footer-info, .wish-icon-grid {
+    max-width: 50rem;
+    margin: 0 auto;
   }
+
+  .wish-tree-icon {
+    display: block;
+    // // display: grid;
+    // grid-template-columns: 1fr 1fr 1fr 1fr;
+    a {
+      p {
+        text-align: left;
+        margin: 0 auto;
+        margin-left: 2rem;
+        margin-right: 2rem;
+      }
+    }
+  }
+
+  .wish-icon-grid {
+    // display: grid;
+    // grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    height: 73vh;
+  }
+
+  .no-spoiler {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    // grid-column-start: 1;
+    // grid-column-end: 5;
+  }
+
+  .yes-spoiler {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    // grid-column-start: 1;
+    // grid-column-end: 5;
+  }
+
+  // .copl {
+  //   grid-column-start: 2;
+  // }
+
+}
