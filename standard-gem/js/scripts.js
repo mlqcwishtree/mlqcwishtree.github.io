@@ -23,23 +23,26 @@ fetch(standardURL)
         standardR = jsonObject['standardR'];
     })
 
-// Get Karma List from code-of-passionate-love.json
-let eventSP = [];
+// // Local Storage
 
-const eventURL = 'code-of-passionate-love.json';
-fetch(eventURL)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (jsonObject) {
-        eventSP = jsonObject['eventSP'];
-    })
+// // let setTitles = localStorage.getItem("setTitles");
+// // localStorage.setItem("setTitles", userSets);
 
-// Event Drop Rates
-// All SP and SSR 2.5%
-// (Event SP 1.5%)
+// let last10pull = localStorage.getItem("last10pull");
+// let mostCommonKarma = localStorage.getItem("mostCommonKarma");
+// let mostCommonRKarma = localStorage.getItem("mostCommonRKarma");
+// let mostCommonSRKarma = localStorage.getItem("mostCommonSRKarma");
+// let mostCommonSSRKarma = localStorage.getItem("mostCommonSSRKarma");
+// let mostCommonSPKarma = localStorage.getItem("mostCommonSPKarma");
+
+// let SSRKingsObtained = localStorage.getItem("SSRKingsObtained");
+
+
+
+// Standard Drop Rates
+// SP and SSR 1%
 // SR 10%
-// R 87.5%
+// R 89%
 // Buying 10 ar a time guarentees 1 SR or above
 
 // Declares the karmas and timesWished variables to be used globaly
@@ -50,7 +53,7 @@ let timesWished = 0;
 let stamina = 150;
 let gold = 100000;
 let gems = 10000000;
-let galaxyWishCoupon = 5000;
+let galaxyWishCoupon = 500;
 let purchasesLeftToday = 999999;
 let ownLimited = 0;
 // let freeCountdown = 0;
@@ -111,8 +114,8 @@ function addCoupons() {
     updateResources();
 }
 
-// let ownLimitedContainer = document.getElementById("own-limited");
-// ownLimitedContainer.textContent = ownLimited + "/80";
+let ownLimitedContainer = document.getElementById("own-limited");
+ownLimitedContainer.textContent = ownLimited + "/80";
 
 let limitContainer = document.getElementById("limit");
 limitContainer.textContent = purchasesLeftToday;
@@ -129,8 +132,7 @@ gemNumbContainer.textContent = gems;
 let gwcNumbContainer = document.getElementById("gwcNumb");
 gwcNumbContainer.textContent = galaxyWishCoupon;
 
-let timesWishedContainer = document.getElementById("redeemNUM");
-timesWishedContainer.textContent = timesWished;
+
 
 // Random number generators
 
@@ -148,8 +150,6 @@ function getRandomInt(min, max) {
 
 function draw1() {
     let karmaRoll = getRandomInt(1, 101);
-    let karmaDeci = getRandomInt(1, 101);
-        
 
     let kingCheck = getRandomInt(1, 101);
     if (kingCheck > 95) {
@@ -167,15 +167,11 @@ function draw1() {
         }
     }
     else {
-        if (karmaRoll >= 99 || karmaRoll > 98 && karmaDeci >= 50) {
-            let karmaArray = "eventSP";
-            karma = pickKarma(karmaArray);
-        }
-        else if (karmaRoll >= 98 || karmaRoll > 97 && karmaDeci >= 50) {
+        if (karmaRoll > 99) {
             let karmaArray = "SP or SSR";
             karma = pickKarma(karmaArray);
         }
-        else if (karmaRoll >= 88 || karmaRoll > 87 && karmaDeci >= 50) {
+        else if (karmaRoll > 89) {
             let karmaArray = "SR";
             karma = pickKarma(karmaArray);
         }
@@ -190,7 +186,6 @@ function draw1() {
 function updateResources() {
     gwcNumbContainer.textContent = galaxyWishCoupon;
     gemNumbContainer.textContent = gems;
-    timesWishedContainer.textContent = timesWished;
 }
 
 function buy1() {
@@ -231,9 +226,9 @@ function updateStats(karmas) {
         updateLocalStorage("totalTimesPulled", newLocalStorageItem);
 
         // Standard Gem times wished
-        oldLocalStorageItem = JSON.parse(localStorage.getItem('codeOfPassionateLoveTimesPulled'));
+        oldLocalStorageItem = JSON.parse(localStorage.getItem('standardGemTimesPulled'))
         newLocalStorageItem = oldLocalStorageItem + 1;
-        updateLocalStorage("codeOfPassionateLoveTimesPulled", newLocalStorageItem);
+        updateLocalStorage("standardGemTimesPulled", newLocalStorageItem);
     }
     else {
         let newLocalStorageItem = JSON.stringify(karmas);
@@ -241,14 +236,14 @@ function updateStats(karmas) {
         // console.log(localStorage.last10pull);
 
         // Total times wished
-        let oldLocalStorageItem = JSON.parse(localStorage.getItem('totalTimesPulled'));
+        let oldLocalStorageItem = JSON.parse(localStorage.getItem('totalTimesPulled'))
         newLocalStorageItem = oldLocalStorageItem + 10;
         updateLocalStorage("totalTimesPulled", newLocalStorageItem);
 
         // Standard Gem times wished
-        oldLocalStorageItem = JSON.parse(localStorage.getItem('codeOfPassionateLoveTimesPulled'));
+        oldLocalStorageItem = JSON.parse(localStorage.getItem('standardGemTimesPulled'))
         newLocalStorageItem = oldLocalStorageItem + 10;
-        updateLocalStorage("codeOfPassionateLoveTimesPulled", newLocalStorageItem);
+        updateLocalStorage("standardGemTimesPulled", newLocalStorageItem);
     }
 
     // Karmas
@@ -356,11 +351,14 @@ function buy10() {
         galaxyWishCoupon = 0;
         gems -= (10 - galaxyWishCoupon) * 180;
     }
+    // else if (gems < 1800) {
     else {
         alert("You don't have enough gems! Let me get you some more!");
         gems += 10000;
     }
- 
+    // else {
+    //     gems -= 1800;
+    // }
     updateResources()
     let timesPulled = 10;
     karmas = [];
@@ -373,99 +371,96 @@ function buy10() {
         }
     }
 
+
     // Test Karmas
 
     // karmas =
-    // [
-    //     {
-    //         "rarity": "R",
-    //         "character": "Lucien",
-    //         "title": "Detailed Narration",
-    //         "stat": "Decision",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "R",
-    //         "character": "Lucien",
-    //         "title": "Archive",
-    //         "stat": "Creativity",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "R",
-    //         "character": "Lucien",
-    //         "title": "Detailed Narration",
-    //         "stat": "Decision",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "R",
-    //         "character": "Gavin",
-    //         "title": "Upwind",
-    //         "stat": "Execution",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "SP",
-    //         "character": "Lucien",
-    //         "title": "Law of Gravity",
-    //         "stat": "Execution",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "R",
-    //         "character": "Gavin",
-    //         "title": "Rock and a Hard Place",
-    //         "stat": "Execution",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "R",
-    //         "character": "Gavin",
-    //         "title": "Whetstone",
-    //         "stat": "Execution",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "R",
-    //         "character": "Lucien",
-    //         "title": "Detailed Narration",
-    //         "stat": "Decision",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "SP",
-    //         "character": "Gavin",
-    //         "title": "Dream Traveler",
-    //         "stat": "Creativity",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "SP",
-    //         "character": "Lucien",
-    //         "title": "Law of Gravity",
-    //         "stat": "Execution",
-    //         "king": "false"
-    //     }
-    // ];
+    //     [
+    //         {
+    //             "rarity": "SR",
+    //             "character": "Gavin",
+    //             "title": "Sincere Instruction",
+    //             "stat": "Execution",
+    //             "king": "false"
+    //         },
+    //         {
+    //             "rarity": "R",
+    //             "character": "Lucien",
+    //             "title": "Archive",
+    //             "stat": "Creativity",
+    //             "king": "false"
+    //         },
+    //         {
+    //             "rarity": "R",
+    //             "character": "Lucien",
+    //             "title": "Detailed Narration",
+    //             "stat": "Decision",
+    //             "king": "false"
+    //         },
+    //         {
+    //             "rarity": "R",
+    //             "character": "Gavin",
+    //             "title": "Upwind",
+    //             "stat": "Execution",
+    //             "king": "false"
+    //         },
+    //         {
+    //             "rarity": "R",
+    //             "character": "Lucien",
+    //             "title": "Detailed Narration",
+    //             "stat": "Decision",
+    //             "king": "false"
+    //         },
+    //         {
+    //             "rarity": "R",
+    //             "character": "Lucien",
+    //             "title": "Detailed Narration",
+    //             "stat": "Decision",
+    //             "king": "false"
+    //         },
+    //         {
+    //             "rarity": "R",
+    //             "character": "Gavin",
+    //             "title": "Whetstone",
+    //             "stat": "Execution",
+    //             "king": "false"
+    //         },
+    //         {
+    //             "rarity": "R",
+    //             "character": "Lucien",
+    //             "title": "Detailed Narration",
+    //             "stat": "Decision",
+    //             "king": "false"
+    //         },
+    //         {
+    //             "rarity": "R",
+    //             "character": "Lucien",
+    //             "title": "Detailed Narration",
+    //             "stat": "Decision",
+    //             "king": "false"
+    //         },
+    //         {
+    //             "rarity": "R",
+    //             "character": "Lucien",
+    //             "title": "Detailed Narration",
+    //             "stat": "Decision",
+    //             "king": "false"
+    //         }
+    //     ];
+
 
     wishAnimation(timesPulled, karmas);
     timesWished = timesWished + 10;
     updateCosts();
     purchasesLeftToday -= 10;
     updatePurchaseLimit();
+
     updateStats(karmas);
 }
 
 function guarenteedSRPlus() {
     let karmaRoll = getRandomInt(1, 101);
-    let karmaDeci = getRandomInt(1, 101);
-
-    if (karmaRoll >= 99 || karmaRoll > 98 && karmaDeci >= 50) {
-        let karmaArray = "eventSP";
-        karma = pickKarma(karmaArray);
-    }
-    else if (karmaRoll >= 98 || karmaRoll > 97 && karmaDeci >= 50) {
+    if (karmaRoll > 99) {
         let karmaArray = "SP or SSR";
         karma = pickKarma(karmaArray);
     }
@@ -473,22 +468,11 @@ function guarenteedSRPlus() {
         let karmaArray = "SR";
         karma = pickKarma(karmaArray);
     }
-
-    if (karma.rarity == "R") {
-        karma = guarenteedSRPlus();
-        // console.log("SR guarenteed backup");
-    }
-
     return karma;
 }
 
 function pickKarma(karmaArray) {
-    if (karmaArray == "eventSP") {
-        let index = getRandomInt(0, eventSP.length);
-        let karma = eventSP[index];
-        return karma;
-    }
-    else if (karmaArray == "KingSSR") {
+    if (karmaArray == "KingSSR") {
         let index = getRandomInt(0, standardKingSSR.length);
         let karma = standardKingSSR[index];
         return karma;
@@ -526,115 +510,7 @@ function skipVideo() {
     videoContainer.removeChild(videoContainer.firstChild);
 }
 
-function createBackgroundVideo() {
-    let appWidth = document.getElementById("app-container").offsetWidth;
-    let appHeight = document.getElementById("app-container").offsetHeight;
-
-    let backgroundVideoContainer = document.getElementById("videoBackgroundContainer");
-    backgroundVideoContainer.style.width = appWidth;
-    backgroundVideoContainer.style.height = appHeight;
-
-    // // Regular Video
-    // Note that I can't upload a video of this size to github
-    // let backgroundVideo = document.createElement("video");
-    // backgroundVideo.setAttribute("id", "backgroundVideo");
-    // backgroundVideo.autoplay = true;
-    // backgroundVideo.muted = true;
-    // backgroundVideo.loop = true;
-    // backgroundVideo.setAttribute("height", appHeight);
-    
-    // let backgroundSource = document.createElement("source");
-    // backgroundSource.setAttribute("id", "backgroundVideoSource");
-
-    // backgroundSource.setAttribute("src", "../assets/videos//code-of-love-bg.mp4");
-    // backgroundSource.setAttribute("type", "video/mp4");
-
-    // backgroundVideo.appendChild(backgroundSource);
-    // backgroundVideoContainer.appendChild(backgroundVideo);
-
-    // Youtube Video
-    let backgroundVideo = document.createElement("iframe");
-    backgroundVideo.setAttribute("id", "backgroundVideo");
-    backgroundVideo.setAttribute("height", appHeight);
-    backgroundVideo.setAttribute("width", appWidth);
-    
-    backgroundVideo.setAttribute("frameborder", "0");
-    
-
-    backgroundVideo.setAttribute("src", "https://youtube.com/embed/LBF4lC4li7I?autoplay=1&mute=1&controls=0&playlist=LBF4lC4li7I&loop=1&loop=1");
-
-    backgroundVideoContainer.appendChild(backgroundVideo);
-
-}
-
-function removeBackgroundVideo() {
-    document.getElementById("backgroundVideo").remove();
-}
-
-function checkForSpecial(karmas, displayedKarma) {
-    
-    specialRemoveDisplayedKarma(karmas, displayedKarma);
-    
-    let SSRorSP = false;
-       
-    while (SSRorSP == false || displayedKarma < 9) {
-
-        if (karmas[displayedKarma].rarity == "SP" || karmas[displayedKarma].rarity == "SSR") {
-            if (displayedKarma != 0) {
-
-                SSRorSP = true;
-                
-                break;
-            } else {
-                displayedKarma += 1;
-            }
-        }
-        else {
-            displayedKarma += 1;
-        }
-
-        if (displayedKarma == 10) {
-            displayThumbnails(karmas);
-            break;
-        }
-
-    }
-
-    let karma = karmas[displayedKarma];
-    displayedKarma += 1;
-
-    displayKarma(karma, displayedKarma, karmas);
-
-}
-
-function specialRemoveDisplayedKarma(karmas, displayedKarma) {
-    let resultsContainer = document.getElementById("resultsContainer");
-
-    if (karmas.length == 1) {
-        console.log("specialRemoveDisplayedKarma 2");
-        console.log("displayThumbnails 6");
-        displayThumbnails(karmas);
-    }
-    else {
-        while (resultsContainer.firstChild) {
-            resultsContainer.removeChild(resultsContainer.firstChild);
-        }
-        if (displayedKarma < 10) {
-            displayedKarma += 1;
-            if (displayedKarma == 9) {
-                displayThumbnails(karmas);
-            }
-        }
-        else {
-            displayThumbnails(karmas);
-        }
-    }
-}
-
-
-function wishAnimation(timesPulled, karmas) {
-    removeBackgroundVideo();
-
+function SPAnimation(title, character) {
     let appContainer = document.getElementById("app-container");
 
     let videoContainer = document.getElementById("videoContainer");
@@ -652,14 +528,78 @@ function wishAnimation(timesPulled, karmas) {
 
     let sourceElement = document.createElement("source");
     sourceElement.setAttribute("type", "video/mp4");
+    videoElement.appendChild(sourceElement);
+
+
+    sourceElement.setAttribute("src", "../assets/videos/sp" + "-" + character.toLowerCase() + ".mp4");
+
+
+    videoElement.play();
+    videoElement.addEventListener('ended', function() { videoElement.remove(); });
+}
+
+
+function finalSPAnimation(karma) {
+
+    let rarity = karma.rarity;
+
+    if (rarity == "SP") {
+        let character = karma.character;
+
+        if (!document.getElementById("finalAnimation")) {
+            let appContainer = document.getElementById("app-container");
     
+            let videoContainer = document.getElementById("videoContainer");
+            let videoElement = document.createElement("video");
+            videoElement.setAttribute("id", "finalAnimation");
+                
+            videoElement.muted = true;
+            
+            let height = appContainer.offsetHeight;
+            let width = appContainer.offsetWidth;
+            
+            videoElement.setAttribute("height", height);
+            videoElement.setAttribute("width", width);
+            
+            videoContainer.appendChild(videoElement);
+            
+            let sourceElement = document.createElement("source");
+            sourceElement.setAttribute("type", "video/mp4");
+            videoElement.appendChild(sourceElement);
+        
+            sourceElement.setAttribute("src", "../assets/videos/sp" + "-" + character.toLowerCase() + "-2.mp4");    
+            videoElement.play();
+            videoElement.addEventListener('ended', function() { videoElement.remove(); });
+        }    
+    }
+}
+
+
+function wishAnimation(timesPulled, karmas) {
+    let appContainer = document.getElementById("app-container");
+
+    let videoContainer = document.getElementById("videoContainer");
+    let videoElement = document.createElement("video");
+    // videoElement.autoplay = true;
+    videoElement.muted = true;
+
+    let height = appContainer.offsetHeight;
+    let width = appContainer.offsetWidth;
+
+    videoElement.setAttribute("height", height);
+    videoElement.setAttribute("width", width);
+
+    videoContainer.appendChild(videoElement);
+
+    let sourceElement = document.createElement("source");
+    sourceElement.setAttribute("type", "video/mp4");
     videoElement.appendChild(sourceElement);
 
     if (timesPulled == 1) {
-        sourceElement.setAttribute("src", "../assets/videos/1-pull-copl.mp4");
+        sourceElement.setAttribute("src", "../assets/videos/hf-pull1.mp4");
     }
     else {
-        sourceElement.setAttribute("src", "../assets/videos/10-pull-copl.mp4");
+        sourceElement.setAttribute("src", "../assets/videos/hf-pull10.mp4");
     }
 
     videoElement.play();
@@ -694,107 +634,6 @@ function rarityAnimation(rarity, character) {
     videoElement.play();
     videoElement.addEventListener('ended', function() { videoElement.remove(); });
 
-}
-
-function SPAnimation(title, character) {
-    let appContainer = document.getElementById("app-container");
-
-    let videoContainer = document.getElementById("videoContainer");
-    let videoElement = document.createElement("video");
-   
-    videoElement.muted = true;
-
-    let height = appContainer.offsetHeight;
-    let width = appContainer.offsetWidth;
-
-    videoElement.setAttribute("height", height);
-    videoElement.setAttribute("width", width);
-
-    videoContainer.appendChild(videoElement);
-
-    let sourceElement = document.createElement("source");
-    sourceElement.setAttribute("type", "video/mp4");
-    videoElement.appendChild(sourceElement);
-
-    // ex. gavin-obsession-1
-    if (title == "Obsession" || title == "Preference" || title == "Clinging" || title == "Tenderness") {
-        sourceElement.setAttribute("src", "../assets/videos/" + character.toLowerCase() + "-" + title.toLowerCase() + "-1.mp4");
-    }
-    else {
-        sourceElement.setAttribute("src", "../assets/videos/sp" + "-" + character.toLowerCase() + ".mp4");
-    }
-
-
-    videoElement.play();
-    videoElement.addEventListener('ended', function() { videoElement.remove(); });
-}
-
-function finalSPAnimation(karma) {
-
-    let rarity = karma.rarity;
-
-    if (rarity == "SP") {
-        let character = karma.character;
-        let title = karma.title;
-
-        if (title == "Obsession" || title == "Preference" || title == "Clinging" || title == "Tenderness") {
-            if (!document.getElementById("finalAnimation")) {
-                let appContainer = document.getElementById("app-container");
-    
-                let videoContainer = document.getElementById("videoContainer");
-                let videoElement = document.createElement("video");
-              
-                videoElement.muted = true;
-            
-                let height = appContainer.offsetHeight;
-                let width = appContainer.offsetWidth;
-            
-                videoElement.setAttribute("height", height);
-                videoElement.setAttribute("width", width);
-            
-                videoContainer.appendChild(videoElement);
-            
-                let sourceElement = document.createElement("source");
-                sourceElement.setAttribute("type", "video/mp4");
-                videoElement.appendChild(sourceElement);
-            
-                // ex. gavin-obsession-2
-                sourceElement.setAttribute("src", "../assets/videos/" + character.toLowerCase() + "-" + title.toLowerCase() + "-2.mp4");
-        
-            
-                videoElement.play();
-                videoElement.addEventListener('ended', function() { videoElement.remove(); });
-            }
-            
-        }
-        else {
-            if (!document.getElementById("finalAnimation")) {
-                let appContainer = document.getElementById("app-container");
-    
-                let videoContainer = document.getElementById("videoContainer");
-                let videoElement = document.createElement("video");
-                
-                videoElement.muted = true;
-            
-                let height = appContainer.offsetHeight;
-                let width = appContainer.offsetWidth;
-            
-                videoElement.setAttribute("height", height);
-                videoElement.setAttribute("width", width);
-            
-                videoContainer.appendChild(videoElement);
-            
-                let sourceElement = document.createElement("source");
-                sourceElement.setAttribute("type", "video/mp4");
-                videoElement.appendChild(sourceElement);
-        
-                sourceElement.setAttribute("src", "../assets/videos/sp" + "-" + character.toLowerCase() + "-2.mp4");
-        
-                videoElement.play();
-                videoElement.addEventListener('ended', function() { videoElement.remove(); });
-            }
-        }
-    }
 }
 
 function displayResults(karmas) {
@@ -896,6 +735,7 @@ function displayKarma(karma, displayedKarma, karmas) {
         starContainer.setAttribute("id", "starContainer");
 
         let starIMG = document.createElement("img");
+        // starIMG.setAttribute("src", "../assets/resources/stars.png");
 
         if (rarity == "R") {
             starIMG.setAttribute("src", "../assets/resources/5-stars.png");
@@ -906,6 +746,7 @@ function displayKarma(karma, displayedKarma, karmas) {
         else {
             starIMG.setAttribute("src", "../assets/resources/7-stars.png");
         }
+
 
         starIMG.setAttribute("alt", "1star");
         starIMG.setAttribute("id", "starIMG");
@@ -940,6 +781,7 @@ function displayKarma(karma, displayedKarma, karmas) {
         let skipContainer = document.createElement("button");
         skipContainer.setAttribute("class", "skipContainer");
         skipContainer.setAttribute("id", "skipContainer");
+        // skipContainer.setAttribute("onclick", 'displayThumbnails(' + stringKarmas + ')');
         skipContainer.setAttribute("onclick", 'checkForSpecial(' + stringKarmas + ', ' + displayedKarma + ')');
 
         let skipText = document.createElement("div");
@@ -983,9 +825,8 @@ function getKarmaImgURL(karma) {
     return karmaImgURL;
 }
 
+
 function removeDisplayedKarma(karmas, displayedKarma, karma) {
-
-
 
     let resultsContainer = document.getElementById("resultsContainer");
 
@@ -1012,6 +853,64 @@ function removeDisplayedKarma(karmas, displayedKarma, karma) {
     }
 }
 
+function checkForSpecial(karmas, displayedKarma) {
+    
+    specialRemoveDisplayedKarma(karmas, displayedKarma);
+    
+    let SSRorSP = false;
+       
+    while (SSRorSP == false || displayedKarma < 9) {
+
+        if (karmas[displayedKarma].rarity == "SP" || karmas[displayedKarma].rarity == "SSR") {
+            if (displayedKarma != 0) {
+
+                SSRorSP = true;
+                
+                break;
+            } else {
+                displayedKarma += 1;
+            }
+        }
+        else {
+            displayedKarma += 1;
+        }
+
+        if (displayedKarma == 10) {
+            displayThumbnails(karmas);
+            break;
+        }
+
+    }
+
+    let karma = karmas[displayedKarma];
+    displayedKarma += 1;
+
+    displayKarma(karma, displayedKarma, karmas);
+
+}
+
+function specialRemoveDisplayedKarma(karmas, displayedKarma) {
+    let resultsContainer = document.getElementById("resultsContainer");
+
+    if (karmas.length == 1) {
+        displayThumbnails(karmas);
+    }
+    else {
+        while (resultsContainer.firstChild) {
+            resultsContainer.removeChild(resultsContainer.firstChild);
+        }
+        if (displayedKarma < 10) {
+            displayedKarma += 1;
+            if (displayedKarma == 9) {
+                displayThumbnails(karmas);
+            }
+        }
+        else {
+            displayThumbnails(karmas);
+        }
+    }
+}
+
 function backHome() {
     if (document.getElementById("summaryBox")) {
         let resultsContainer = document.getElementById("resultsContainer");
@@ -1028,10 +927,6 @@ function backHome() {
             infoContainer.removeChild(infoContainer.firstChild);
         }
     }
-    if (!document.getElementById("backgroundVideo")) {
-        createBackgroundVideo();
-    }
-    
 }
 
 function displayThumbnails(karmas) {
@@ -1081,6 +976,7 @@ function displayThumbnails(karmas) {
 
         let summaryKarmaBox = document.createElement("div");
         summaryKarmaBox.setAttribute("class", "summaryKarmaBox " + stat.toLowerCase());
+        // summaryKarmaBox.setAttribute("class", karmas[i].stat.toLowerCase());
         summaryKarma.appendChild(summaryKarmaBox);
 
         let summaryRarity = document.createElement("img");
@@ -1105,6 +1001,8 @@ function displayThumbnails(karmas) {
         let summaryStars = document.createElement("img");
         summaryStars.setAttribute("class", "summaryStars");
 
+        // summaryStars.setAttribute("src", "../assets/resources/stars.png");
+
         if (rarity == "R") {
             summaryStars.setAttribute("src", "../assets/resources/5-stars.png");
         }
@@ -1114,6 +1012,7 @@ function displayThumbnails(karmas) {
         else {
             summaryStars.setAttribute("src", "../assets/resources/7-stars.png");
         }
+
 
         summaryStars.setAttribute("alt", "1star");
         starBox.appendChild(summaryStars);
@@ -1147,7 +1046,6 @@ function displayThumbnails(karmas) {
 
 responsiveAppSize();
 window.addEventListener('resize', responsiveAppSize);
-
 
 function responsiveAppSize() {
     let appDiv = document.getElementById("app-container");
@@ -1190,13 +1088,6 @@ function responsiveAppSize() {
 
     if (document.getElementById("summaryBox")) {
         summaryKarmaSizes();
-    }
-
-    if (document.getElementById("backgroundVideo")) {
-        removeBackgroundVideo();
-    }
-    else {
-        createBackgroundVideo();
     }
 }
 
@@ -1280,75 +1171,25 @@ function placeGrids(appWidth) {
 
     // Redeem
     let redeemButton = document.getElementById("redeem-button");
-    redeemButton.style.fontSize = appWidth / 30 + "px";
-    
-    redeemButton.style.width = appWidth / 10 + "px";
-    redeemButton.style.height = appWidth / 10 + "px";
-    redeemButton.style.marginLeft = "-" + appWidth / 7.5 + "px";
-    redeemButton.style.marginTop = appWidth / 50 + "px";
+    redeemButton.style.fontSize = Math.round(appWidth / 25) + "px";
+    redeemButton.style.width = Math.round(appWidth / 4.5) + "px";
+    redeemButton.style.height = Math.round(appWidth / 15) + "px";
 
     let redeemIMG = document.getElementById("redeem-img");
-    redeemIMG.style.width = appWidth / 10 + "px";
-    redeemIMG.style.marginLeft = "-" + appWidth / 40 + "px";
-    redeemIMG.style.marginTop = "-" + appWidth / 30 + "px";
-
-    let redeemTxt = document.getElementById("redeem-txt");
-    redeemTxt.style.marginTop = appWidth / 30 + "px";
-    redeemTxt.style.marginLeft = "-" + appWidth / 14 + "px";
-
+    redeemIMG.style.width = Math.round(appWidth / 10) + "px";
+    redeemIMG.style.marginLeft = "-" + Math.round(appWidth / 40) + "px";
+    redeemIMG.style.marginRight = "-" + Math.round(appWidth / 100) + "px";
 
     // Drop Rate
     let dropButton = document.getElementById("drop-button");
-    dropButton.style.fontSize = appWidth / 32 + "px";
-    dropButton.style.width = appWidth / 10 + "px";
-    dropButton.style.height = appWidth / 10 + "px";
+    dropButton.style.fontSize = Math.round(appWidth / 25) + "px";
+    dropButton.style.padding = Math.round(appWidth / 90) + "px";
+    dropButton.style.marginTop = Math.round(appWidth / 50) + "px";
 
-
-    // mission
-    let missionButton = document.getElementById("mission-button");
-    missionButton.style.fontSize = appWidth / 52 + "px";
-    missionButton.style.width = appWidth / 10 + "px";
-    missionButton.style.height = appWidth / 10 + "px";
-
-    // feedback
-    let feedbackButton = document.getElementById("feedback-button");
-    feedbackButton.style.fontSize = appWidth / 50 + "px";
-    feedbackButton.style.width = appWidth / 10 + "px";
-    feedbackButton.style.height = appWidth / 10 + "px";
-
-    // record
-    let recordButton = document.getElementById("record-button");
-    recordButton.style.fontSize = appWidth / 50 + "px";
-    recordButton.style.width = appWidth / 10 + "px";
-    recordButton.style.height = appWidth / 10 + "px";
-
-    // record svg
-    let recordSVG = document.getElementById("recordSVG");
-    recordSVG.style.width = appWidth / 20 + "px";
-
-
-    let redeemBoxImg = document.getElementById("redeem-box-img");
-    redeemBoxImg.style.width = appWidth / 18 + "px";
-    
-    redeemBoxImg.style.marginTop = "-" + appWidth / 150 + "px";
-
-    let redeemImgBoxContainer = document.getElementById("redeem-number");
-    redeemImgBoxContainer.style.width = appWidth / 6 + "px";
-    redeemImgBoxContainer.style.height = appWidth / 25 + "px";
-
-    let redeemNUMContainer = document.getElementById("redeemNUM");
-    redeemNUMContainer.style.marginLeft = appWidth / 35 + "px";
-
-    let leftButtons = document.getElementById("left-buttons");
-    leftButtons.style.marginTop = "-" + appWidth / 20 + "px";
-    leftButtons.style.marginLeft = appWidth / 35 + "px";
-    leftButtons.style.height = appWidth / 2 + "px";
-
-
-    // // Banner placeholder
+    // Banner placeholder
     let bannerPlaceholder = document.getElementById("banner-placeholder");
-    bannerPlaceholder.style.width = appWidth + "px";
-    bannerPlaceholder.style.height = appWidth / 3.5 + "px";
+    bannerPlaceholder.style.width = Math.round(appWidth) + "px";
+    bannerPlaceholder.style.height = Math.round(appWidth) + "px";
 
     // Third Row
     let thirdRow = document.getElementById("third-row");
@@ -1356,71 +1197,42 @@ function placeGrids(appWidth) {
     ThirdRC = "repeat(auto-fill, " + ThirdRC + "px)";
     thirdRow.style.gridTemplateColumns = ThirdRC;
 
-    // Limited up
-    let limitedUp = document.getElementById("event-limited-button");
-    limitedUp.style.fontSize = appWidth / 30 + "px";
-    limitedUp.style.width = appWidth / 5 + "px";
-    limitedUp.style.height = appWidth / 10 + "px";
+    // Preview
+    let previewBTN = document.getElementById("previewBTN");
+    previewBTN.style.fontSize = Math.round(appWidth / 30) + "px";
+    previewBTN.style.height = Math.round(appWidth / 9) + "px";
+    previewBTN.style.width = Math.round(appWidth / 9) + "px";
+    previewBTN.style.marginLeft = "-" + Math.round(appWidth / 100) + "px";
 
-    // event wish
-    let eventWish = document.getElementById("event-wish-button");
-    eventWish.style.fontSize = appWidth / 30 + "px";
-    eventWish.style.width = appWidth / 5 + "px";
-    eventWish.style.height = appWidth / 10 + "px";
-    eventWish.style.marginTop = appWidth / 20 + "px";
+    // Own Limited
+    let limitedContainer = document.getElementById("limitedContainer");
+    limitedContainer.style.fontSize = Math.round(appWidth / 35) + "px";
+    limitedContainer.style.height = Math.round(appWidth / 23) + "px";
+    limitedContainer.style.marginTop = Math.round(appWidth / 18) + "px";
+    limitedContainer.style.marginLeft = "-" + Math.round(appWidth / 20) + "px";
 
+    let ownP = document.getElementById("ownP");
+    ownP.style.marginTop = Math.round(appWidth / 200) + "px";
+    ownP.style.marginLeft = Math.round(appWidth / 40) + "px";
 
-    // info
-    let eventInfo = document.getElementById("event-info-button");
-    eventInfo.style.width = appWidth / 20 + "px";
-    eventInfo.style.height = appWidth / 20 + "px";
-    eventInfo.style.fontSize = appWidth / 25 + "px";
-    eventInfo.style.marginTop = "-" + appWidth / 40 + "px";
-
-    // info time
-    let infoTime = document.getElementById("event-time");
-    infoTime.style.fontSize = appWidth / 38 + "px";
-    infoTime.style.width = appWidth / 2 + "px";
-
-    // name box
-    let nameBox = document.getElementById("name-box");
-    nameBox.style.width = appWidth / 2 + "px";
-    nameBox.style.height = appWidth / 7 + "px";
-
-    // event info row
-    let eventInfoRow = document.getElementById("event-info-row");
-    eventInfoRow.style.width = appWidth / 2 + "px";
-    eventInfoRow.style.marginBottom = appWidth / 50 + "px";
-
-    // event share
-    let eventShare = document.getElementById("event-share-button");
-    eventShare.style.width = appWidth / 7 + "px";
-    eventShare.style.height = appWidth / 20 + "px";
-    eventShare.style.fontSize = appWidth / 45 + "px";
-    eventShare.style.marginLeft = "-" + appWidth / 22 + "px";
-    eventShare.style.marginTop = appWidth / 22 + "px";
-
-    // announce container
-    let announceContainer = document.getElementById("announce-container");
-    announceContainer.style.width = appWidth / 1.5 + "px";
-
-    // Galaxy and Limited coupon container
-    let right4row = document.getElementById("right4row");
-    right4row.style.width = appWidth + "px";
+    // Fouth Row
+    let fourthRow = document.getElementById("fourthRow");
+    let fourthRC = appWidth / 16;
+    fourthRC = "repeat(auto-fill, " + fourthRC + "px)";
+    fourthRow.style.gridTemplateColumns = fourthRC;
 
     // Galaxy Wish Coupon
     let gwcContainer = document.getElementById("gwcContainer");
-    gwcContainer.style.fontSize = fontSize = appWidth / 35 + "px";
+    gwcContainer.style.fontSize = fontSize = Math.round(appWidth / 49) + "px";
     gwcContainer.style.height = Math.round(appWidth / 23) + "px";
     gwcContainer.style.marginTop = Math.round(appWidth / 30) + "px";
 
     let gwctext = document.getElementById("gwctext");
-    gwctext.style.marginTop = appWidth / 250 + "px";
-    gwctext.style.width = appWidth / 5.2 + "px";
+    gwctext.style.marginTop = Math.round(appWidth / 100) + "px";
 
     let gwcIMG = document.getElementById("gwcIMG");
-    gwcIMG.style.height = appWidth / 8 + "px";
-    gwcIMG.style.marginLeft = "-" + appWidth / 28 + "px";
+    gwcIMG.style.width = Math.round(appWidth / 8) + "px";
+    gwcIMG.style.marginLeft = "-" + Math.round(appWidth / 28) + "px";
 
     let gwcButton = document.getElementById("gwc-button");
     gwcButton.style.height = Math.round(appWidth / 28) + "px";
@@ -1431,39 +1243,6 @@ function placeGrids(appWidth) {
     let gwcSVG = document.getElementById("gwcSVG");
     gwcSVG.style.width = Math.round(appWidth / 36) + "px";
     gwcSVG.style.marginLeft = "-" + Math.round(appWidth / 110) + "px";
-
-    // Limited Coupon
-    let limitedGwcContainer = document.getElementById("LimitedgwcContainer");
-    limitedGwcContainer.style.fontSize = fontSize = appWidth / 35 + "px";
-    limitedGwcContainer.style.height = Math.round(appWidth / 23) + "px";
-    limitedGwcContainer.style.marginTop = Math.round(appWidth / 30) + "px";
-
-    let limitedGwctext = document.getElementById("Limitedgwctext");
-    limitedGwctext.style.marginTop = appWidth / 250 + "px";
-    limitedGwctext.style.width = appWidth / 5.2 + "px";
-
-    let limitedGwcIMG = document.getElementById("LimitedgwcIMG");
-    limitedGwcIMG.style.height = appWidth / 8 + "px";
-    limitedGwcIMG.style.marginLeft = "-" + appWidth / 28 + "px";
-
-    let limitedGwcButton = document.getElementById("Limitedgwc-button");
-    limitedGwcButton.style.height = Math.round(appWidth / 28) + "px";
-    limitedGwcButton.style.width = Math.round(appWidth / 28) + "px";
-    limitedGwcButton.style.marginRight = Math.round(appWidth / 110) + "px";
-    limitedGwcButton.style.marginTop = Math.round(appWidth / 30) + "px";
-
-    let limitedGwcSVG = document.getElementById("LimitedgwcSVG");
-    limitedGwcSVG.style.width = Math.round(appWidth / 36) + "px";
-    limitedGwcSVG.style.marginLeft = "-" + Math.round(appWidth / 110) + "px";
-
-    // eventGwc
-    let eventGwc = document.getElementById("eventGwc");
-    eventGwc.style.marginTop = appWidth / 30 + "px";
-
-    // eventLimitedgwc
-    let eventLimitedgwc = document.getElementById("eventLimitedgwc");
-    eventLimitedgwc.style.marginTop = "-" + appWidth / 22 + "px";
-
 
     // Row 5
     let fifthRow = document.getElementById("row5");
@@ -1487,26 +1266,26 @@ function placeGrids(appWidth) {
     // Pull 1
     let pull1 = document.getElementById("pull1");
     pull1.style.fontSize = appWidth / 21 + "px";
-    pull1.style.paddingLeft = appWidth / 10.2 + "px";
-    pull1.style.paddingRight = appWidth / 10.2 + "px";
-    pull1.style.paddingTop = appWidth / 50 + "px";
-    pull1.style.paddingBottom = appWidth / 50 + "px";
-    pull1.style.marginTop = "-" + appWidth / 50 + "px";
+    pull1.style.paddingLeft = appWidth / 10.5 + "px";
+    pull1.style.paddingRight = appWidth / 10.5 + "px";
+    pull1.style.paddingTop = Math.round(appWidth / 50) + "px";
+    pull1.style.paddingBottom = Math.round(appWidth / 50) + "px";
+    pull1.style.marginTop = "-" + Math.round(appWidth / 50) + "px";
 
     // Pull 10
     let pull10 = document.getElementById("pull10");
     pull10.style.fontSize = appWidth / 21 + "px";
-    pull10.style.paddingLeft = appWidth / 11.5 + "px";
-    pull10.style.paddingRight = appWidth / 11.5 + "px";
-    pull10.style.paddingTop = appWidth / 50 + "px";
-    pull10.style.paddingBottom = appWidth / 50 + "px";
-    pull10.style.marginTop = "-" + appWidth / 50 + "px";
+    pull10.style.paddingLeft = appWidth / 12 + "px";
+    pull10.style.paddingRight = appWidth / 12 + "px";
+    pull10.style.paddingTop = Math.round(appWidth / 50) + "px";
+    pull10.style.paddingBottom = Math.round(appWidth / 50) + "px";
+    pull10.style.marginTop = "-" + Math.round(appWidth / 50) + "px";
 
     // SR Endured
     let SRendured = document.getElementById("SRendured");
     SRendured.style.width = appWidth / 5 + "px";
-    SRendured.style.right = appWidth / 9 + "px";
-    SRendured.style.bottom = appWidth / 15 + "px";
+    SRendured.style.right = appWidth / 10 + "px";
+    SRendured.style.bottom = appWidth / 10 + "px";
 
     // Pull 1 cost
     let cost1IMG = document.getElementById("cost1IMG");
@@ -1547,6 +1326,7 @@ function placeGrids(appWidth) {
 }
 
 
+// This is the results being displayed
 function sizeResultsKarma(appWidth) {
     if (document.getElementById("karmaImgContainer")) {
         let karmaHeader = document.getElementById("karmaHeader1");
@@ -1628,6 +1408,11 @@ function sizeResultsKarma(appWidth) {
     }
 }
 
+// let missing = {
+//     addEventListener: function() {}
+// };  // a "null" element
+  
+// (document.querySelector('.summaryBox') || missing).addEventListener(...);
 
 // Summary Karma
 function summaryKarmaSizes() {
@@ -1897,7 +1682,7 @@ function buildPreviewKarma(array, previewBox) {
 
         let summaryKarmaBox = document.createElement("div");
         summaryKarmaBox.setAttribute("class", "summaryKarmaBox " + stat.toLowerCase());
-    
+        // summaryKarmaBox.setAttribute("class", karmas[i].stat.toLowerCase());
         summaryKarma.appendChild(summaryKarmaBox);
 
         let summaryRarity = document.createElement("img");
@@ -1946,10 +1731,4 @@ function buildPreviewKarma(array, previewBox) {
 
         previewBox.appendChild(summaryKarma);
     });
-}
-
-
-// This needs to be built last so that the dimensions are correct
-if (!document.getElementById("backgroundVideo")) {
-    createBackgroundVideo();
 }
