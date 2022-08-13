@@ -152,12 +152,12 @@ function draw1() {
         
 
     let kingCheck = getRandomInt(1, 101);
-    if (kingCheck > 99) {
-        if (karmaRoll > 99) {
+    if (kingCheck > 95) {
+        if (karmaRoll > 90) {
             let karmaArray = "KingSSR";
             karma = pickKarma(karmaArray);
         }
-        else if (karmaRoll > 89) {
+        else if (karmaRoll > 70) {
             let karmaArray = "KingSR";
             karma = pickKarma(karmaArray);
         }
