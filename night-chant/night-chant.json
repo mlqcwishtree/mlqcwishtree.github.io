@@ -1,0 +1,32 @@
+{
+    "eventSSR": [
+        {
+            "rarity": "SSR",
+            "character": "Gavin",
+            "title": "Twilight Prelude",
+            "stat": "Decision",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Kiro",
+            "title": "Blood Pledge",
+            "stat": "Execution",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Lucien",
+            "title": "Eternal Sighs",
+            "stat": "Creativity",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Victor",
+            "title": "Echo Moon",
+            "stat": "Decision",
+            "king": false
+        }
+    ]
+}
