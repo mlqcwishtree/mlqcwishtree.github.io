@@ -1,0 +1,32 @@
+{
+    "eventSSR": [
+        {
+            "rarity": "SSR",
+            "character": "Gavin",
+            "title": "Cerulean Vow",
+            "stat": "Execution",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Kiro",
+            "title": "Star's Lament",
+            "stat": "Creativity",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Lucien",
+            "title": "Moonlit Sea",
+            "stat": "Decision",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Victor",
+            "title": "Crossed Over",
+            "stat": "Affinity",
+            "king": false
+        }
+    ]
+}
