@@ -140,7 +140,7 @@ function karmasToHTML(karmas) {
 
         let karmaHTML = "<p>";
 
-        if (king == "true") {
+        if (king == true) {
             console.log("King");
             karmaHTML += "<span class='king-highlight'>King " + rarity + "</span>";
         }
@@ -188,7 +188,7 @@ function pulledKarmasToHTML(karmas) {
     
             let karmaHTML = "<p>";
     
-            if (king == "true") {
+            if (king == true) {
                 karmaHTML += "<span class='king-highlight'>King " + rarity + "</span>";
             }
             else if (rarity == "SR") {
@@ -237,7 +237,7 @@ function pulledKarmaToHTML(karma) {
         karmaHTML += "</p>";
     }
     else {
-        if (king == "true") {
+        if (king == true) {
             karmaHTML += "<span class='king-highlight'>King " + rarity + "</span>";
         }
         else if (rarity == "SR") {
@@ -314,10 +314,10 @@ let codeOfPassionateLoveTimesPulled = localStorage.getItem("codeOfPassionateLove
 document.getElementById("codeOfPassionateLoveTimesPulled").textContent = codeOfPassionateLoveTimesPulled;
 let appetencyTimesPulled = localStorage.getItem("appetencyTimesPulled");
 document.getElementById("appetencyTimesPulled").textContent = appetencyTimesPulled;
-
-
-
-
+let oracleTimesPulled = localStorage.getItem("oracleTimesPulled");
+document.getElementById("oracleTimesPulled").textContent = oracleTimesPulled;
+let nightChantTimesPulled = localStorage.getItem("nightChantTimesPulled");
+document.getElementById("nightChantTimesPulled").textContent = nightChantTimesPulled;
 
 
 let karmaObtained = JSON.parse(localStorage.getItem('karmaObtained'));
@@ -460,7 +460,7 @@ for (let i = 0; i < karmaObtained.length; i++) {
     }
 
     // king
-    if (king == "true") {
+    if (king == true) {
         if (rarity == "SSR") {
             SSRkingsObtained.push(karma);
             numKingSSRkarmaPulled += 1;
