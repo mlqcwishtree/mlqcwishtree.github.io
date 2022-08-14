@@ -582,7 +582,10 @@ function createBackgroundVideo() {
 }
 
 function removeBackgroundVideo() {
-    document.getElementById("backgroundVideo").remove();
+    if ((window.mobileCheck() == false)) {
+        let backgroundVideoContainer = document.getElementById("videoBackgroundContainer");
+        backgroundVideoContainer.removeChild(backgroundVideoContainer.firstChild);
+    }
 }
 
 function checkForSpecial(karmas, displayedKarma) {
