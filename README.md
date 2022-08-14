@@ -2,6 +2,8 @@ I am Hyruleismyrule, I am a huge fan of Mr Love Queen's Choice. I am a full time
 
 Thank you very much to PikaGodnPray (discord), GAMING 事件簿 (YouTube) and yafu Red (YouTube) and other anonymous donors for donating footage and thank you to everyone who runs the wikkipedia page!
 
+Thank you to @rose.of.autumn (Instagram) for letting me use her translations!
+
 I know this is a bit rough right now, but I will be improving it over time. If there are any major issues please contact me as Hyruleismyrule on discord.
 
 I really hope you enjoy!
