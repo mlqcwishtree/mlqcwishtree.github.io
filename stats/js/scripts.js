@@ -135,12 +135,16 @@ function karmasToHTML(karmas) {
         // let stat = karmas[i].stat;
         let title = karmas[i].title;
 
+        // console.log(king);
+        // console.log(rarity);
+
         let karmaHTML = "<p>";
 
-        if (king == true) {
-            karmaHTML += "<span class='king-highlight'>King </span>";
+        if (king == "true") {
+            console.log("King");
+            karmaHTML += "<span class='king-highlight'>King " + rarity + "</span>";
         }
-        if (rarity == "SR") {
+        else if (rarity == "SR") {
             karmaHTML += "<span class='sr-highlight'>" + rarity + "</span>";
         }
         else if (rarity == "SSR") {
@@ -179,13 +183,15 @@ function pulledKarmasToHTML(karmas) {
             // let stat = karmas[i].stat;
             let title = karmas[i].title;
             let timesPulled = karmas[i].timesPulled;
+
+            // console.log(king);
     
             let karmaHTML = "<p>";
     
-            if (king == true) {
-                karmaHTML += "<span class='king-highlight'>King </span>";
+            if (king == "true") {
+                karmaHTML += "<span class='king-highlight'>King " + rarity + "</span>";
             }
-            if (rarity == "SR") {
+            else if (rarity == "SR") {
                 karmaHTML += "<span class='sr-highlight'>" + rarity + "</span>";
             }
             else if (rarity == "SSR") {
@@ -224,15 +230,17 @@ function pulledKarmaToHTML(karma) {
 
     let karmaHTML = "<p>";
 
+    // console.log(king);
+
     if (!karma) {
         karmaHTML += "No karma of this type has been pulled yet."
         karmaHTML += "</p>";
     }
     else {
-        if (king == true) {
-            karmaHTML += "<span class='king-highlight'>King </span>";
+        if (king == "true") {
+            karmaHTML += "<span class='king-highlight'>King " + rarity + "</span>";
         }
-        if (rarity == "SR") {
+        else if (rarity == "SR") {
             karmaHTML += "<span class='sr-highlight'>" + rarity + "</span>";
         }
         else if (rarity == "SSR") {
@@ -452,7 +460,7 @@ for (let i = 0; i < karmaObtained.length; i++) {
     }
 
     // king
-    if (king == true) {
+    if (king == "true") {
         if (rarity == "SSR") {
             SSRkingsObtained.push(karma);
             numKingSSRkarmaPulled += 1;
