@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="description" content="#">
     <meta name="author" content="Hyruleismyrule">
-    <title>Appetency • MLQC Wish Tree Simulator</title>
+    <title id="tree-title"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
-    <link href="./css/normalize.css" rel="stylesheet">
-    <link href="css/small.css" rel="stylesheet">
+    <link href="../css/normalize.css" rel="stylesheet">
+    <link href="../rerun-css/small.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,12 +17,9 @@
     <!-- Fontawesome Icons -->
     <script src="https://kit.fontawesome.com/7d69b1e6ff.js" crossorigin="anonymous"></script>
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180"
-        href="../assets/favicon_package_v0.16/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="../assets/favicon_package_v0.16/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="../assets/favicon_package_v0.16/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon_package_v0.16/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon_package_v0.16/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon_package_v0.16/favicon-16x16.png">
     <link rel="manifest" href="../assets/favicon_package_v0.16/site.webmanifest">
     <link rel="mask-icon" href="../assets/favicon_package_v0.16/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
@@ -32,17 +29,12 @@
 <body onmousedown="return false" onselectstart="return false">
     <!-- App Container -->
     <div id="app-container" class="app-container">
-
         <!-- Video -->
         <div id="videoContainer" onclick="skipVideo()"></div>
-
         <!-- Results -->
         <div class="resultsContainer" id="resultsContainer"></div>
-        <!-- </div> -->
-
         <!-- Info -->
         <div class="infoContainer" id="infoContainer"></div>
-
         <!-- Top Row -->
         <div id="topRow" class="items-header-container">
             <!-- Back Button -->
@@ -54,7 +46,6 @@
                     </svg>
                 </div>
             </a><!-- End Back Button -->
-
             <!-- Item Bar Container -->
             <div class="items-bar-container stamina-bar" id="itemsBarContainer">
                 <!-- Stamina -->
@@ -126,11 +117,8 @@
                         </svg>
                     </button>
                 </div>
-
             </div> <!-- End Item Bar Container -->
-
         </div> <!-- End Top Row -->
-
         <!-- 2nd row -->
         <div class="top-action-buttons" id="2ndRow">
             <div class="redeem-container">
@@ -139,57 +127,20 @@
                     <div id="redeem-txt" class="redeem-txt">Redeem</div>
                 </button>
             </div>
-            <div class="redeem-number" id="redeem-number">
-                <div class="redeem-img-box" id="redeem-img-box">
-                    <img id="redeem-box-img" src="../assets/resources/drop-icon.png" alt="drop">
-                </div>
-                <div class="redeem-NUM" id="redeemNUM"></div>
-            </div>
-            <div class="share-container">
-                <button class="share-btn" id="share-button">
-                    <div id="share-txt" class="share-txt">Share</div>
-                </button>
-            </div>
         </div> <!-- End 2nd row -->
-
         <!-- Banner Placeholder -->
         <div id="banner-placeholder"></div>
-
-        <div class="right-buttons">
-            <div class="event-limited-container">
-                <button id="event-limited-button" class="event-limited-btn">Limited UP</button>
-            </div>
-            <div class="event-wish-container">
-                <button id="event-wish-button" class="event-wish-btn">Wish List</button>
-            </div>
-        </div>
-
         <!-- Third Row -->
         <div class="third-row" id="third-row">
         </div><!-- End Third Row -->
-
         <!-- Fourth Row -->
         <div id="fourthRow" class="forth-row">
-            <div class="left4row" id="left4row">
-                <div id="event-info-row" class="event-info-row">
-                    <button class="event-info-button" id="event-info-button">i</button>
-                    <div class="event-time" id="event-time">2022/05/20 5:00 - 2022/5/29 23:59</div>
-                </div>
-                <div class="announce-container" id="announce-container">
-                    <div id="name-box" class="name-box"></div>
-                    <div id="event-share-button" class="event-share-button">
-                        <div class="event-share-text">Share the Love</div>
-                    </div>
-                </div>
-            </div>
-
             <div class="right4row" id="right4row">
                 <div class="eventGwc" id="eventGwc">
-                    <img id="gwcIMG" src="../assets/resources/galaxy-wish-coupon.png" alt="galaxy-wish-coupon">
                     <div class="wish-container" id="gwcContainer">
-                        <p id="gwctext">Owned: <span id="gwcNumb"></span></p>
+                        <p id="gwctext">Galaxy Wish Coupon: <span id="gwcNumb"></span></p>
                     </div>
-
+                    <img id="gwcIMG" src="../assets/resources/galaxy-wish-coupon.png" alt="galaxy-wish-coupon">
                     <button class="add-btn" id="gwc-button" onclick="addCoupons()">
                         <svg id="gwcSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                             <defs>
@@ -207,18 +158,14 @@
                         </svg>
                     </button>
                 </div>
-
             </div>
-            
         </div> <!-- End Fourth Row -->
-
         <!-- Fifth Row -->
         <div class="free-container" id="row5">
             <div class="free-text-container" id="freeTxt">
                 <p id="freeAfter"><span id="free"></span></p>
             </div>
         </div><!-- End Fifth Row -->
-
         <!-- Sixth Row -->
         <div id="SixthRow" class="buy-containers">
             <div class="pull-1-container">
@@ -231,7 +178,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="pull-10-container">
                 <button id="pull10" class="pull-button pull10" onclick="buy10()">Buy 10</button>
                 <div class="cost" id="cost10Container">
@@ -245,7 +191,6 @@
             <img id="SRendured" class="sr-ensured" src="../assets/resources/sr-ensured.png" alt="SR ensured">
         </div>
         <!-- End Sixth Row -->
-
         <!-- Last Row -->
         <div class="purchase-limit-container" id="purchase-limit-container">
             <div class="text-container" id="limitText">
@@ -255,13 +200,9 @@
                 </p>
             </div>
         </div>
-
         <!-- Video background -->
-        <div class="video-background-container" id="videoBackgroundContainer">
-         
-        </div>
+        <div class="video-background-container" id="videoBackgroundContainer"></div>
     </div> <!-- End App Container -->
-
     <!-- javaScript -->
     <script src="js/scripts.js"></script>
 </body>

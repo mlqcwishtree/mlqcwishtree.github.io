@@ -1,0 +1,34 @@
+{
+    "eventSSR": [
+        {
+            "rarity": "SSR",
+            "character": "Gavin",
+            "title": "Love of My Life",
+            "stat": "Execution",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Lucien",
+            "title": "Sweet Nothings",
+            "stat": "Execution",
+            "king": false
+        }
+    ],
+    "eventSR": [
+        {
+            "rarity": "SR",
+            "character": "Victor",
+            "title": "Cuddle",
+            "stat": "Decision",
+            "king": false
+        },
+        {
+            "rarity": "SR",
+            "character": "Kiro",
+            "title": "Heartbeat",
+            "stat": "Creativity",
+            "king": false
+        }
+    ]
+}

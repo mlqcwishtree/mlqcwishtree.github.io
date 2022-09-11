@@ -1,0 +1,32 @@
+{
+    "eventSSR": [
+        {
+            "rarity": "SSR",
+            "character": "Gavin",
+            "title": "Diamond World",
+            "stat": "Execution",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Kiro",
+            "title": "Snowy Night Carols",
+            "stat": "Decision",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Lucien",
+            "title": "Under the Mistletoe",
+            "stat": "Affinity",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Victor",
+            "title": "Praise of Love",
+            "stat": "Creativity",
+            "king": false
+        }
+    ]
+}

@@ -4,8 +4,13 @@
       max-width: 60rem;
     
     }
-    .wish-icon-grid {
-        height: 70vh;
+
+    .no-spoiler {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  
+    .yes-spoiler {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   
 }
