@@ -1,0 +1,34 @@
+{
+    "eventSP": [
+        {
+            "rarity": "SP",
+            "character": "Gavin",
+            "title": "Dream Traveler",
+            "stat": "Creativity",
+            "king": false
+        },
+        {
+            "rarity": "SP",
+            "character": "Victor",
+            "title": "Only Tonight",
+            "stat": "Decision",
+            "king": false
+        }
+    ],
+    "eventSSR": [
+        {
+            "rarity": "SSR",
+            "character": "Lucien",
+            "title": "Temptation",
+            "stat": "Creativity",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Kiro",
+            "title": "No Man's Land",
+            "stat": "Decision",
+            "king": false
+        }
+    ]
+}

@@ -7,8 +7,6 @@
 
   .wish-tree-icon {
     display: block;
-    // // display: grid;
-    // grid-template-columns: 1fr 1fr 1fr 1fr;
     a {
       p {
         text-align: left;
@@ -19,29 +17,35 @@
     }
   }
 
-  .wish-icon-grid {
-    // display: grid;
-    // grid-template-columns: 1fr 1fr 1fr 1fr;
-
-    height: 73vh;
-  }
-
   .no-spoiler {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    // grid-column-start: 1;
-    // grid-column-end: 5;
   }
 
   .yes-spoiler {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    // grid-column-start: 1;
-    // grid-column-end: 5;
   }
 
-  // .copl {
-  //   grid-column-start: 2;
-  // }
+  .karma-titles {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .most-common-rarity {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .most-common {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .lucien-chart, .victor-chart, .gavin-chart, .kiro-chart {
+    max-width: 20rem;
+  }
 
 }

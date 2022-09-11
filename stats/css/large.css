@@ -2,8 +2,13 @@
   .header-info, .footer-info, .wish-icon-grid, .stats {
     max-width: 60rem;
   }
-  .wish-icon-grid {
-    height: 85vh;
+  .karma-titles {
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .most-common-rarity {
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 /*# sourceMappingURL=large.css.map */

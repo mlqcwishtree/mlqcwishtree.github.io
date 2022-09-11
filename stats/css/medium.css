@@ -12,9 +12,6 @@
     margin-left: 2rem;
     margin-right: 2rem;
   }
-  .wish-icon-grid {
-    height: 73vh;
-  }
   .no-spoiler {
     display: -ms-grid;
     display: grid;
@@ -26,6 +23,27 @@
     display: grid;
     -ms-grid-columns: 1fr 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .karma-titles {
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .most-common-rarity {
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .most-common {
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .charts {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+  .lucien-chart, .victor-chart, .gavin-chart, .kiro-chart {
+    max-width: 20rem;
   }
 }
 /*# sourceMappingURL=medium.css.map */

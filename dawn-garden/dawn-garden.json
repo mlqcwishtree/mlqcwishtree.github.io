@@ -1,0 +1,34 @@
+{
+    "eventSP": [
+        {
+            "rarity": "SP",
+            "character": "Kiro",
+            "title": "Gorgeous Lights",
+            "stat": "Creativity",
+            "king": false
+        },
+        {
+            "rarity": "SP",
+            "character": "Lucien",
+            "title": "Law of Gravity",
+            "stat": "Execution",
+            "king": false
+        }
+    ],
+    "eventSSR": [
+        {
+            "rarity": "SSR",
+            "character": "Victor",
+            "title": "Music of the Night",
+            "stat": "Execution",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Gavin",
+            "title": "Unforgettable Time",
+            "stat": "Affinity",
+            "king": false
+        }
+    ]
+}

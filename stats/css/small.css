@@ -11,7 +11,8 @@ header {
   padding: 1rem;
 }
 
-header h1, header h2 {
+header h1,
+header h2 {
   margin: 0;
 }
 
@@ -23,18 +24,22 @@ header h2 {
 main {
   padding-left: 1rem;
   padding-right: 1rem;
+  font-family: 'Open Sans', sans-serif;
+}
+
+main img {
+  width: 100%;
 }
 
 .linkButton {
+  text-decoration: none;
+  color: black;
   border: none;
   border-radius: 10px;
   padding: 1rem;
   background-color: white;
-}
-
-.linkButton a {
-  text-decoration: none;
-  color: black;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 footer {
@@ -42,8 +47,7 @@ footer {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.5rem;
-  padding-bottom: 0.5rem p;
-  padding-bottom-margin: 0;
+  padding-bottom: 0.5rem;
 }
 
 .wish-tree-icon {
@@ -180,5 +184,32 @@ input:checked + .slider:before {
   padding: 1rem;
   border-radius: 1rem;
   margin-bottom: 1rem;
+}
+
+.karma-titles {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  text-align: center;
+}
+
+.most-common-rarity {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  text-align: center;
+}
+
+.most-common {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  text-align: center;
 }
 /*# sourceMappingURL=small.css.map */

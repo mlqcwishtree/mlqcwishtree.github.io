@@ -5,12 +5,12 @@
 // Event Name
 // Please change the event name text string only
 
-let eventName = "Night Chant";
+let eventName = "Here Comes the Groom";
 // **********
 
 // Please write that as a variable name for the stats page then add it there. ex. rerunTemplate
 
-let eventVarName = "nightChant";
+let eventVarName = "hereComesTheGroom";
 // *************
 
 // Are the standard wish flower animations used? True for yes, false for no
@@ -20,7 +20,7 @@ let standardAnimation = false;
 
 // After making the background video add the video key number to this string.
 
-let youtubeKeyCode = "Z9uqW91FKWM";
+let youtubeKeyCode = "rfTjT83cOYw";
 // ***************
 
 // plase remember to add a static background picture to the event assets folder for mobile devices.

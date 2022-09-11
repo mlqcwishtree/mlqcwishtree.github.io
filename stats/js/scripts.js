@@ -1,60 +1,80 @@
-let spoiler = false;
+// ***************************************
+// For ease of editing, change stuff here
 
-// let spoiler = JSON.parse(localStorage.getItem('spoiler'));
-// console.log(spoiler);
+let standardGemTimesPulled = localStorage.getItem("standardGemTimesPulled");
+let codeOfPassionateLoveTimesPulled = localStorage.getItem("codeOfPassionateLoveTimesPulled");
+let appetencyTimesPulled = localStorage.getItem("appetencyTimesPulled");
+let oracleTimesPulled = localStorage.getItem("oracleTimesPulled");
+let nightChantTimesPulled = localStorage.getItem("nightChantTimesPulled");
+let fireworkDayTimesPulled = localStorage.getItem("fireworkDayTimesPulled");
+let sunsetMistGardenTimesPulled = localStorage.getItem("sunsetMistGardenTimesPulled");
+let chineseNewYearTimesPulled = localStorage.getItem("chineseNewYearTimesPulled");
+let christmasFairytaleTimesPulled = localStorage.getItem("christmasFairytaleTimesPulled");
+let dawnGardenTimesPulled = localStorage.getItem("dawnGardenTimesPulled");
+let hereComesTheGroomTimesPulled = localStorage.getItem("hereComesTheGroomTimesPulled");
 
-// if (spoiler == false) {
-//     toggleSpoilers();
-// }
 
+// This is for the tree usage pie chart, add it here in both spots if global
+let allTrees = [
+    ['WishTree', 'Used'],
+    ['Gem', parseInt(standardGemTimesPulled)],
+    ['Code of Passionate Love', parseInt(codeOfPassionateLoveTimesPulled)],
+    ['Oracle', parseInt(oracleTimesPulled)],
+    ['Night Chant', parseInt(nightChantTimesPulled)],
+    ['Firework Day', parseInt(fireworkDayTimesPulled)],
+    ['Chinese New Year', parseInt(chineseNewYearTimesPulled)],
+    ['Sunset Mist Garden', parseInt(sunsetMistGardenTimesPulled)],
+    ['Christmas Fairytale', parseInt(christmasFairytaleTimesPulled)],
+    ['Dawn Garden', parseInt(dawnGardenTimesPulled)],
+    ['Here Comes the Groom', parseInt(hereComesTheGroomTimesPulled)],
+    // Spoiler stars here
+    ['Appetency', parseInt(appetencyTimesPulled)],
+];
+
+let globalTrees = [
+    ['WishTree', 'Used'],
+    ['Gem', parseInt(standardGemTimesPulled)],
+    ['Code of Passionate Love', parseInt(codeOfPassionateLoveTimesPulled)],
+    ['Oracle', parseInt(oracleTimesPulled)],
+    ['Night Chant', parseInt(nightChantTimesPulled)],
+    ['Firework Day', parseInt(fireworkDayTimesPulled)],
+    ['Chinese New Year', parseInt(chineseNewYearTimesPulled)],
+    ['Sunset Mist Garden', parseInt(sunsetMistGardenTimesPulled)],
+    ['Christmas Fairytale', parseInt(christmasFairytaleTimesPulled)],
+    ['Dawn Garden', parseInt(dawnGardenTimesPulled)],
+    ['Here Comes the Groom', parseInt(hereComesTheGroomTimesPulled)]
+];
+
+
+// ****************************************
+
+
+
+
+
+let spoiler = JSON.parse(localStorage.getItem('spoiler'));
+
+
+if (spoiler == null) {
+    localStorage.setItem("spoiler", "false");
+}
+else if (spoiler == true) {
+    document.getElementById('agreeToSpoilers').checked = true;
+}
 
 function toggleSpoilers() {
-    if (spoiler == false) {
-
-        let action = confirm("Are you sure you want to show spoilers for content not released in the Global Server?");
-        if (action) {
-            let spoilerTrees = ["appetency"];
-
-            for (let i = 0; i < spoilerTrees.length; i++) {
-                let labelElement = document.getElementById(spoilerTrees[i] + "Label");
-        
-                labelElement.classList.remove("spoiler");
-
-                let statElement = document.getElementById(spoilerTrees[i] + "TimesPulled");
-
-                statElement.classList.remove("spoiler");
-            }
-
-            document.getElementById("agreeToSpoilers").checked = true;
-
-            spoiler = true;
-            // localStorage.setItem("spoiler", true);
-            // console.log(spoiler);
-        }
-        else {
-            document.getElementById('agreeToSpoilers').checked = false;
-        }
+    if (spoiler == true) {
+        // switching to false
+        spoiler = false;
+        localStorage.setItem("spoiler", "false");
+        location.reload();
     }
     else {
-        let spoilerTrees = ["appetency"];
-
-        for (let i = 0; i < spoilerTrees.length; i++) {
-            let labelElement = document.getElementById(spoilerTrees[i] + "Label");
-    
-            labelElement.classList.add("spoiler");
-
-            let statElement = document.getElementById(spoilerTrees[i] + "TimesPulled");
-
-            statElement.classList.add("spoiler");
-        }
-        
-        document.getElementById("agreeToSpoilers").checked = false;
-
-        spoiler = false;
-        // localStorage.setItem("spoiler", false);
-        // console.log(spoiler);
+        // Switching to true
+        spoiler = true;
+        localStorage.setItem("spoiler", "true");
+        location.reload();
     }
-    // setAllKarmas();
 }
 
 
@@ -66,197 +86,54 @@ function clearLocalStorage() {
     }
 }
 
-
-
-
-// // Karmas
-// setAllKarmas();
-
-
-
-// function setAllKarmas() {
-//     let allKarmas = [];
-
-//     // Standard
-//     let url = '../standard-gem/standard.json';
-//     fetch(url)
-//         .then(function (response) {
-//             return response.json();
-//         })
-//         .then(function (jsonObject) {
-//             allKarmas.push(jsonObject['standardSP']);
-//             allKarmas.push(jsonObject['standardKingSSR']);
-//             allKarmas.push(jsonObject['standardKingSR']);
-//             allKarmas.push(jsonObject['standardKingR']);
-//             allKarmas.push(jsonObject['standardR']);
-//         })
-
-//     // Code of Passionate Love
-//     url = '../code-of-passionate-love/code-of-passionate-love.json';
-//     fetch(url)
-//         .then(function (response) {
-//             return response.json();
-//         })
-//         .then(function (jsonObject) {
-//             allKarmas.push(jsonObject['eventSP']);
-//         })
-
-//     // Appetency
-//     if (spoiler == true) {
-//         url = '../appetency/appetency.json';
-//         fetch(url)
-//             .then(function (response) {
-//                 return response.json();
-//             })
-//             .then(function (jsonObject) {
-//                 allKarmas.push(jsonObject['eventSSR']);
-//             })
-//     }
-
-
-//     console.log(allKarmas);
-// }
-
-
-
-
-// Local Storage
-
-
-// let allowSpoilers = localStorage.getItem("allowSpoilers");
-
-function karmasToHTML(karmas) {
-    let containerHTML = "<div class='karma-titles'>";
-
-    for (let i = 0; i < karmas.length; i++) {
-        let character = karmas[i].character;
-        let king = karmas[i].king;
-        let rarity = karmas[i].rarity;
-        // let stat = karmas[i].stat;
-        let title = karmas[i].title;
-
-        // console.log(king);
-        // console.log(rarity);
-
-        let karmaHTML = "<p>";
-
-        if (king == true) {
-            console.log("King");
-            karmaHTML += "<span class='king-highlight'>King " + rarity + "</span>";
-        }
-        else if (rarity == "SR") {
-            karmaHTML += "<span class='sr-highlight'>" + rarity + "</span>";
-        }
-        else if (rarity == "SSR") {
-            karmaHTML += "<span class='ssr-highlight'>" + rarity + "</span>";
-        }
-        else if (rarity == "SP") {
-            karmaHTML += "<span class='sp-highlight'>" + rarity + "</span>";
-        }
-        else {
-            karmaHTML += rarity;
-        }
-        
-
-        karmaHTML += " - " + character + ": " + title;
-        karmaHTML += "</p>";
-
-        containerHTML += karmaHTML;
-    }
-
-    containerHTML += "</div>";
-
-    return containerHTML;
-}
-
-function pulledKarmasToHTML(karmas) {
-    let containerHTML = "<div class='karma-titles'>";
-    if (!karmas[0]) {
-        let karmaHTML = "<p>No karmas of this type have been obtained.</p>";
-        containerHTML += karmaHTML;
-    }
-    else {
-        for (let i = 0; i < karmas.length; i++) {
-            let character = karmas[i].character;
-            let king = karmas[i].king;
-            let rarity = karmas[i].rarity;
-            // let stat = karmas[i].stat;
-            let title = karmas[i].title;
-            let timesPulled = karmas[i].timesPulled;
-
-            // console.log(king);
-    
-            let karmaHTML = "<p>";
-    
-            if (king == true) {
-                karmaHTML += "<span class='king-highlight'>King " + rarity + "</span>";
-            }
-            else if (rarity == "SR") {
-                karmaHTML += "<span class='sr-highlight'>" + rarity + "</span>";
-            }
-            else if (rarity == "SSR") {
-                karmaHTML += "<span class='ssr-highlight'>" + rarity + "</span>";
-            }
-            else if (rarity == "SP") {
-                karmaHTML += "<span class='sp-highlight'>" + rarity + "</span>";
-            }
-            else {
-                karmaHTML += rarity;
-            }
-            
-    
-            karmaHTML += " - " + character + ": " + title + " (" + timesPulled + ")";
-            karmaHTML += "</p>";
-    
-            containerHTML += karmaHTML;
-        }
-    }
-
-    containerHTML += "</div>";
-
-    return containerHTML;
-}
-
 function pulledKarmaToHTML(karma) {
-    let containerHTML = "<div class='karma-titles'>";
 
-   
-    let character = karma.character;
-    let king = karma.king;
-    let rarity = karma.rarity;
-    // let stat = karmas.stat;
-    let title = karma.title;
-    let timesPulled = karma.timesPulled;
+    let containerHTML = "<div class='karma-common'>";
 
-    let karmaHTML = "<p>";
-
-    // console.log(king);
+    let karmaHTML = "<div class='karma-group'>";
 
     if (!karma) {
-        karmaHTML += "No karma of this type has been pulled yet."
+        karmaHTML = "<p>";
+        karmaHTML += "No karma of this type has been pulled yet.";
         karmaHTML += "</p>";
     }
     else {
+
+        let character = karma.character;
+        let king = karma.king;
+        let rarity = karma.rarity;
+
+        let title = karma.title;
+        title = title.replace(/\s+/g, '-');
+
+        let timesPulled = karma.timesPulled;
+        let imgElement = '<div class="most-common-img"><img src="../assets/karma-cg/' + character.toLowerCase() + '-' + title.toLowerCase() + '.jpg" alt="' + character + ': ' + title + '"></div>';
+
+        karmaHTML += imgElement;
+
+        let captionElement = "<p class='most-common-caption'>";
         if (king == true) {
-            karmaHTML += "<span class='king-highlight'>King " + rarity + "</span>";
+            captionElement += "<span class='king-highlight'>King " + rarity + "</span>";
         }
         else if (rarity == "SR") {
-            karmaHTML += "<span class='sr-highlight'>" + rarity + "</span>";
+            captionElement += "<span class='sr-highlight'>" + rarity + "</span>";
         }
         else if (rarity == "SSR") {
-            karmaHTML += "<span class='ssr-highlight'>" + rarity + "</span>";
+            captionElement += "<span class='ssr-highlight'>" + rarity + "</span>";
         }
         else if (rarity == "SP") {
-            karmaHTML += "<span class='sp-highlight'>" + rarity + "</span>";
+            captionElement += "<span class='sp-highlight'>" + rarity + "</span>";
         }
         else {
-            karmaHTML += rarity;
+            captionElement += rarity;
         }
-            
-    
-        karmaHTML += " - " + character + ": " + title + " (" + timesPulled + ")";
-        karmaHTML += "</p>";
+
+        captionElement += " - " + character + ": " + title + " (" + timesPulled + ")";
+        captionElement += "</p>";
+
+        karmaHTML += captionElement;
     }
+    karmaHTML += "</div>";
 
     containerHTML += karmaHTML;
 
@@ -265,66 +142,80 @@ function pulledKarmaToHTML(karma) {
     return containerHTML;
 }
 
-function pulledNumToHTML(number) {
-    let containerHTML = "<div class='karma-num'>";
-    let numHTML = "<p>";
-    if (!number) {
-        numHTML += "0";
-    }
-    else {
-        numHTML += number;
-    }
-    numHTML +=  "</p>";
-    containerHTML += numHTML;
-    return containerHTML;
-}
-
 let last10pull = JSON.parse(localStorage.getItem('last10pull'));
 if (last10pull) {
-    document.getElementById("last10pull").innerHTML = karmasToHTML(last10pull);
+    document.getElementById("last10pull").innerHTML = lastKarmasToHTML(last10pull);
 }
 
 
 let last1pull = JSON.parse(localStorage.getItem('last1pull'));
 if (last1pull) {
-    document.getElementById("last1pull").innerHTML = karmasToHTML(last1pull);
+    document.getElementById("last1pull").innerHTML = lastKarmasToHTML(last1pull);
 }
 
 
+function lastKarmasToHTML(karmas) {
+    let containerHTML = "<div class='karma-titles'>";
+
+    for (let i = 0; i < karmas.length; i++) {
+        let karma = karmas[i];
+
+        let character = karma.character;
+        let king = karma.king;
+        let rarity = karma.rarity;
+
+        let title = karma.title;
+        title = title.replace(/\s+/g, '-');
+        // console.log(title);
 
 
+        let karmaGroup = "<div class='karma-group'>";
 
+        if (!karma) {
+            karmaGroup += "<p>";
+            karmaGroup += "No karma of this type has been pulled yet.";
+            karmaGroup += "</p>";
+        }
+        else {
+            let imgElement = "<div class='most-common-img'><img src='../assets/karma-cg/" + character.toLowerCase() + "-" + title.toLowerCase() + ".jpg' alt='" + character + ": " + title + "'></div>";
+            karmaGroup += imgElement;
 
+            let captionElement = "<p class='most-common-caption'>";
+            if (king == true) {
+                captionElement += "<span class='king-highlight'>King " + rarity + "</span>";
+            }
+            else if (rarity == "SR") {
+                captionElement += "<span class='sr-highlight'>" + rarity + "</span>";
+            }
+            else if (rarity == "SSR") {
+                captionElement += "<span class='ssr-highlight'>" + rarity + "</span>";
+            }
+            else if (rarity == "SP") {
+                captionElement += "<span class='sp-highlight'>" + rarity + "</span>";
+            }
+            else {
+                captionElement += rarity;
+            }
 
+            captionElement += " - " + character + ": " + title;
+            captionElement += "</p>";
 
+            karmaGroup += captionElement;
+        }
+        karmaGroup += "</div>";
+        containerHTML += karmaGroup;
+    }
 
+    containerHTML += "</div>";
 
-
-// list of karma obtained
-
-// list of unobtained karma
-
-// Times pulled by tree
-let totalTimesPulled = localStorage.getItem("totalTimesPulled");
-document.getElementById("totalTimesPulled").textContent = totalTimesPulled;
-
-let standardGemTimesPulled = localStorage.getItem("standardGemTimesPulled");
-document.getElementById("standardGemTimesPulled").textContent = standardGemTimesPulled;
-let codeOfPassionateLoveTimesPulled = localStorage.getItem("codeOfPassionateLoveTimesPulled");
-document.getElementById("codeOfPassionateLoveTimesPulled").textContent = codeOfPassionateLoveTimesPulled;
-let appetencyTimesPulled = localStorage.getItem("appetencyTimesPulled");
-document.getElementById("appetencyTimesPulled").textContent = appetencyTimesPulled;
-let oracleTimesPulled = localStorage.getItem("oracleTimesPulled");
-document.getElementById("oracleTimesPulled").textContent = oracleTimesPulled;
-let nightChantTimesPulled = localStorage.getItem("nightChantTimesPulled");
-document.getElementById("nightChantTimesPulled").textContent = nightChantTimesPulled;
+    return containerHTML;
+}
 
 
 let karmaObtained = JSON.parse(localStorage.getItem('karmaObtained'));
 
 // most pulled karma
 let mostPulledKarma = "";
-let mostPulledRKarma = "";
 let mostPulledSRKarma = "";
 let mostPulledSSRKarma = "";
 let mostPulledSPKarma = "";
@@ -357,12 +248,22 @@ let mcLucienSR = "";
 let mcLucienSSR = "";
 let mcLucienSP = "";
 
+let numLucienR = 0;
+let numLucienSR = 0;
+let numLucienSSR = 0;
+let numLucienSP = 0;
+
 // Victor stats
 let mcVictorKarma = "";
 let mcVictorR = "";
 let mcVictorSR = "";
 let mcVictorSSR = "";
 let mcVictorSP = "";
+
+let numVictorR = 0;
+let numVictorSR = 0;
+let numVictorSSR = 0;
+let numVictorSP = 0;
 
 // Gavin stats
 let mcGavinKarma = "";
@@ -371,6 +272,11 @@ let mcGavinSR = "";
 let mcGavinSSR = "";
 let mcGavinSP = "";
 
+let numGavinR = 0;
+let numGavinSR = 0;
+let numGavinSSR = 0;
+let numGavinSP = 0;
+
 // Kiro stats
 let mcKiroKarma = "";
 let mcKiroR = "";
@@ -378,10 +284,13 @@ let mcKiroSR = "";
 let mcKiroSSR = "";
 let mcKiroSP = "";
 
+let numKiroR = 0;
+let numKiroSR = 0;
+let numKiroSSR = 0;
+let numKiroSP = 0;
 
 
 let mostPulledKarmaNum = 0;
-let mostPulledRkarmaNum = 0;
 let mostPulledSRkarmaNum = 0;
 let mostPulledSSRkarmaNum = 0;
 let mostPulledSPkarmaNum = 0;
@@ -411,11 +320,12 @@ let mcKiroSRNum = 0;
 let mcKiroSSRNum = 0;
 let mcKiroSPNum = 0;
 
+let countedKarma = 0;
+
 for (let i = 0; i < karmaObtained.length; i++) {
     let karma = karmaObtained[i];
     let rarity = karma.rarity;
     let character = karma.character;
-    // let title = karma.title;
     let king = karma.king;
     let timesPulled = karma.timesPulled;
 
@@ -423,11 +333,6 @@ for (let i = 0; i < karmaObtained.length; i++) {
     if (timesPulled > mostPulledKarmaNum) {
         mostPulledKarma = karma;
         mostPulledKarmaNum = timesPulled;
-    }
-    // most pulled R karma
-    if (timesPulled > mostPulledRkarmaNum && rarity == "R") {
-        mostPulledRKarma = karma;
-        mostPulledRkarmaNum = timesPulled;
     }
     // most pulled SR karma
     if (timesPulled > mostPulledSRkarmaNum && rarity == "SR") {
@@ -447,35 +352,35 @@ for (let i = 0; i < karmaObtained.length; i++) {
 
     // number of rarity pulled
     if (rarity == "SP") {
-        numSPkarmaPulled += 1;
+        numSPkarmaPulled += timesPulled;
     }
     else if (rarity == "SSR") {
-        numSSRkarmaPulled += 1;
+        numSSRkarmaPulled += timesPulled;
     }
     else if (rarity == "SR") {
-        numSRkarmaPulled += 1;
+        numSRkarmaPulled += timesPulled;
     }
     else {
-        numRkarmaPulled += 1;
+        numRkarmaPulled += timesPulled;
     }
 
     // king
     if (king == true) {
         if (rarity == "SSR") {
             SSRkingsObtained.push(karma);
-            numKingSSRkarmaPulled += 1;
+            numKingSSRkarmaPulled += timesPulled;
         }
         else if (rarity == "SR") {
-            numKingSRkarmaPulled += 1;
+            numKingSRkarmaPulled += timesPulled;
         }
         else {
-            numKingRkarmaPulled += 1;
+            numKingRkarmaPulled += timesPulled;
         }
     }
 
     // Character
     if (character == "Lucien") {
-        numLucienKarmas += 1;
+        numLucienKarmas += timesPulled;
         if (timesPulled > mcLucienKarmaNum) {
             mcLucienKarma = karma;
             mcLucienKarmaNum = timesPulled;
@@ -496,9 +401,22 @@ for (let i = 0; i < karmaObtained.length; i++) {
             mcLucienR = karma;
             mcLucienRNum = timesPulled;
         }
+
+        if (rarity == "SP") {
+            numLucienSP += timesPulled;
+        }
+        else if (rarity == "SSR") {
+            numLucienSSR += timesPulled;
+        }
+        else if (rarity == "SR") {
+            numLucienSR += timesPulled;
+        }
+        else if (rarity == "R") {
+            numLucienR += timesPulled;
+        }
     }
     else if (character == "Victor") {
-        numVictorKarmas += 1;
+        numVictorKarmas += timesPulled;
         if (timesPulled > mcVictorKarmaNum) {
             mcVictorKarma = karma;
             mcVictorKarmaNum = timesPulled;
@@ -519,9 +437,22 @@ for (let i = 0; i < karmaObtained.length; i++) {
             mcVictorR = karma;
             mcVictorRNum = timesPulled;
         }
+
+        if (rarity == "SP") {
+            numVictorSP += timesPulled;
+        }
+        else if (rarity == "SSR") {
+            numVictorSSR += timesPulled;
+        }
+        else if (rarity == "SR") {
+            numVictorSR += timesPulled;
+        }
+        else if (rarity == "R") {
+            numVictorR += timesPulled;
+        }
     }
     else if (character == "Gavin") {
-        numGavinKarmas += 1;
+        numGavinKarmas += timesPulled;
         if (timesPulled > mcGavinKarmaNum) {
             mcGavinKarma = karma;
             mcGavinKarmaNum = timesPulled;
@@ -542,9 +473,22 @@ for (let i = 0; i < karmaObtained.length; i++) {
             mcGavinR = karma;
             mcGavinRNum = timesPulled;
         }
+
+        if (rarity == "SP") {
+            numGavinSP += timesPulled;
+        }
+        else if (rarity == "SSR") {
+            numGavinSSR += timesPulled;
+        }
+        else if (rarity == "SR") {
+            numGavinSR += timesPulled;
+        }
+        else if (rarity == "R") {
+            numGavinR += timesPulled;
+        }
     }
     else {
-        numKiroKarmas += 1;
+        numKiroKarmas += timesPulled;
         if (timesPulled > mcKiroKarmaNum) {
             mcKiroKarma = karma;
             mcKiroKarmaNum = timesPulled;
@@ -565,70 +509,221 @@ for (let i = 0; i < karmaObtained.length; i++) {
             mcKiroR = karma;
             mcKiroRNum = timesPulled;
         }
+
+        if (rarity == "SP") {
+            numKiroSP += timesPulled;
+        }
+        else if (rarity == "SSR") {
+            numKiroSSR += timesPulled;
+        }
+        else if (rarity == "SR") {
+            numKiroSR += timesPulled;
+        }
+        else if (rarity == "R") {
+            numKiroR += timesPulled;
+        }
     }
+
+    countedKarma += timesPulled;
 }
 
 
-
-// let last10pull = JSON.parse(localStorage.getItem('last10pull'));
-// document.getElementById("last10pull").innerHTML = karmasToHTML(last10pull);
-
-
 document.getElementById("mostCommonKarma").innerHTML = pulledKarmaToHTML(mostPulledKarma);
-document.getElementById("mostCommonRKarma").innerHTML = pulledKarmaToHTML(mostPulledRKarma);
+
 document.getElementById("mostCommonSRKarma").innerHTML = pulledKarmaToHTML(mostPulledSRKarma);
 document.getElementById("mostCommonSSRKarma").innerHTML = pulledKarmaToHTML(mostPulledSSRKarma);
 document.getElementById("mostCommonSPKarma").innerHTML = pulledKarmaToHTML(mostPulledSPKarma);
 
-// special function for the numbers
-document.getElementById("numRKarmaObtained").innerHTML = pulledNumToHTML(numRkarmaPulled);
-document.getElementById("numSRKarmaObtained").innerHTML = pulledNumToHTML(numSRkarmaPulled);
-document.getElementById("numSSRKarmaObtained").innerHTML = pulledNumToHTML(numSSRkarmaPulled);
-document.getElementById("numSPKarmaObtained").innerHTML = pulledNumToHTML(numSPkarmaPulled);
-
-// Special function for this one
-document.getElementById("SSRKingsObtained").innerHTML = pulledKarmasToHTML(SSRkingsObtained);
-
-
-document.getElementById("numRKingsObtained").innerHTML = pulledNumToHTML(numKingRkarmaPulled);
-document.getElementById("numSRKingsObtained").innerHTML = pulledNumToHTML(numKingSRkarmaPulled);
-document.getElementById("numSSRKingsObtained").innerHTML = pulledNumToHTML(numKingSSRkarmaPulled);
-
-
-document.getElementById("numLucienKarmas").innerHTML = pulledNumToHTML(numLucienKarmas);
-document.getElementById("numVictorKarmas").innerHTML = pulledNumToHTML(numVictorKarmas);
-document.getElementById("numGavinKarmas").innerHTML = pulledNumToHTML(numGavinKarmas);
-document.getElementById("numKiroKarmas").innerHTML = pulledNumToHTML(numKiroKarmas);
-
 
 document.getElementById("mostCommonLucienKarma").innerHTML = pulledKarmaToHTML(mcLucienKarma);
-document.getElementById("mostCommonLucienRKarma").innerHTML = pulledKarmaToHTML(mcLucienR);
 document.getElementById("mostCommonLucienSRKarma").innerHTML = pulledKarmaToHTML(mcLucienSR);
 document.getElementById("mostCommonLucienSSRKarma").innerHTML = pulledKarmaToHTML(mcLucienSSR);
 document.getElementById("mostCommonLucienSPKarma").innerHTML = pulledKarmaToHTML(mcLucienSP);
 
 document.getElementById("mostCommonVictorKarma").innerHTML = pulledKarmaToHTML(mcVictorKarma);
-document.getElementById("mostCommonVictorRKarma").innerHTML = pulledKarmaToHTML(mcVictorR);
 document.getElementById("mostCommonVictorSRKarma").innerHTML = pulledKarmaToHTML(mcVictorSR);
 document.getElementById("mostCommonVictorSSRKarma").innerHTML = pulledKarmaToHTML(mcVictorSSR);
 document.getElementById("mostCommonVictorSPKarma").innerHTML = pulledKarmaToHTML(mcVictorSP);
 
 document.getElementById("mostCommonGavinKarma").innerHTML = pulledKarmaToHTML(mcGavinKarma);
-document.getElementById("mostCommonGavinRKarma").innerHTML = pulledKarmaToHTML(mcGavinR);
 document.getElementById("mostCommonGavinSRKarma").innerHTML = pulledKarmaToHTML(mcGavinSR);
 document.getElementById("mostCommonGavinSSRKarma").innerHTML = pulledKarmaToHTML(mcGavinSSR);
 document.getElementById("mostCommonGavinSPKarma").innerHTML = pulledKarmaToHTML(mcGavinSP);
 
 document.getElementById("mostCommonKiroKarma").innerHTML = pulledKarmaToHTML(mcKiroKarma);
-document.getElementById("mostCommonKiroRKarma").innerHTML = pulledKarmaToHTML(mcKiroR);
 document.getElementById("mostCommonKiroSRKarma").innerHTML = pulledKarmaToHTML(mcKiroSR);
 document.getElementById("mostCommonKiroSSRKarma").innerHTML = pulledKarmaToHTML(mcKiroSSR);
 document.getElementById("mostCommonKiroSPKarma").innerHTML = pulledKarmaToHTML(mcKiroSP);
 
 
+// Pie Charts
+
+// characters
+google.charts.load("current", { packages: ["corechart"] });
+google.charts.setOnLoadCallback(drawCharacterChart);
+function drawCharacterChart() {
+    let data = google.visualization.arrayToDataTable([
+        ['Character', '% of Pulled Karmas'],
+        ['Lucien', numLucienKarmas],
+        ['Victor', numVictorKarmas],
+        ['Gavin', numGavinKarmas],
+        ['Kiro', numKiroKarmas],
+    ]);
+
+    let options = {
+        pieHole: 0,
+        colors: ['#C218F5', '#DE1D0B', '#0B2FDE', '#FA9F1E'],
+        backgroundColor: { fill: 'transparent' },
+    };
+
+    let chart = new google.visualization.PieChart(document.getElementById('character-pie'));
+    chart.draw(data, options);
+}
 
 
-// document.getElementById("karmaObtained").textContent = karmaObtained;
+// Rarity
+google.charts.setOnLoadCallback(drawRarityChart);
+function drawRarityChart() {
+    let data = google.visualization.arrayToDataTable([
+        ['Rarity', 'Drop Rate'],
+        ['SP', numSPkarmaPulled],
+        ['SSR', numSSRkarmaPulled],
+        ['SR', numSRkarmaPulled],
+        ['R', numRkarmaPulled],
+    ]);
 
-// document.getElementById("karmaNotObtained").textContent = karmaNotObtained;
+    let options = {
+        pieHole: 0,
+        backgroundColor: { fill: 'transparent' },
+    };
 
+    let chart = new google.visualization.PieChart(document.getElementById('rarity-pie'));
+    chart.draw(data, options);
+}
+
+// Wish Tree
+google.charts.setOnLoadCallback(drawWishTreeChart);
+function drawWishTreeChart() {
+    let data = "";
+    if (spoiler == true) {
+        data = google.visualization.arrayToDataTable(allTrees);
+    }
+    else {
+        data = google.visualization.arrayToDataTable(globalTrees);
+    }
+
+    let options = {
+        pieHole: 0,
+        backgroundColor: { fill: 'transparent' },
+    };
+
+    let chart = new google.visualization.PieChart(document.getElementById('wish-tree-pie'));
+    chart.draw(data, options);
+}
+
+
+// Wish Tree
+google.charts.setOnLoadCallback(drawKingChart);
+function drawKingChart() {
+    let data = google.visualization.arrayToDataTable([
+        ['King', 'Percent Rarity Pulled'],
+        ['SSR', parseInt(numKingSSRkarmaPulled)],
+        ['SR', parseInt(numKingSRkarmaPulled)],
+        ['R', parseInt(numKingRkarmaPulled)]
+    ]);
+
+    if (numKingRkarmaPulled == 0 && numKingSRkarmaPulled == 0 && numKingSSRkarmaPulled == 0) {
+        document.getElementById('king-pie').textContent = "No King Karma have been pulled";
+    }
+    else {
+        let options = {
+            pieHole: 0,
+            backgroundColor: { fill: 'transparent' },
+        };
+
+        let chart = new google.visualization.PieChart(document.getElementById('king-pie'));
+        chart.draw(data, options);
+    }
+}
+
+
+// characters
+google.charts.setOnLoadCallback(drawLucienChart);
+function drawLucienChart() {
+    let data = google.visualization.arrayToDataTable([
+        ['Lucien', 'Percent Rarity Pulled'],
+        ['SP', parseInt(numLucienSP)],
+        ['SSR', parseInt(numLucienSSR)],
+        ['SR', parseInt(numLucienSR)],
+        ['R', parseInt(numLucienR)]
+    ]);
+
+
+    let options = {
+        pieHole: 0,
+        backgroundColor: { fill: 'transparent' },
+    };
+
+    let chart = new google.visualization.PieChart(document.getElementById('lucien-pie'));
+    chart.draw(data, options);
+}
+
+google.charts.setOnLoadCallback(drawVictorChart);
+function drawVictorChart() {
+    let data = google.visualization.arrayToDataTable([
+        ['Victor', 'Percent Rarity Pulled'],
+        ['SP', parseInt(numVictorSP)],
+        ['SSR', parseInt(numVictorSSR)],
+        ['SR', parseInt(numVictorSR)],
+        ['R', parseInt(numVictorR)]
+    ]);
+
+
+    let options = {
+        pieHole: 0,
+        backgroundColor: { fill: 'transparent' },
+    };
+
+    let chart = new google.visualization.PieChart(document.getElementById('victor-pie'));
+    chart.draw(data, options);
+}
+
+google.charts.setOnLoadCallback(drawGavinChart);
+function drawGavinChart() {
+    let data = google.visualization.arrayToDataTable([
+        ['Gavin', 'Percent Rarity Pulled'],
+        ['SP', parseInt(numGavinSP)],
+        ['SSR', parseInt(numGavinSSR)],
+        ['SR', parseInt(numGavinSR)],
+        ['R', parseInt(numGavinR)]
+    ]);
+
+
+    let options = {
+        pieHole: 0,
+        backgroundColor: { fill: 'transparent' },
+    };
+
+    let chart = new google.visualization.PieChart(document.getElementById('gavin-pie'));
+    chart.draw(data, options);
+}
+
+google.charts.setOnLoadCallback(drawKiroChart);
+function drawKiroChart() {
+    let data = google.visualization.arrayToDataTable([
+        ['Kiro', 'Percent Rarity Pulled'],
+        ['SP', parseInt(numKiroSP)],
+        ['SSR', parseInt(numKiroSSR)],
+        ['SR', parseInt(numKiroSR)],
+        ['R', parseInt(numKiroR)]
+    ]);
+
+
+    let options = {
+        pieHole: 0,
+        backgroundColor: { fill: 'transparent' },
+    };
+
+    let chart = new google.visualization.PieChart(document.getElementById('kiro-pie'));
+    chart.draw(data, options);
+}

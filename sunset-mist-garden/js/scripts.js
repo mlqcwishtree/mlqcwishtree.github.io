@@ -5,28 +5,28 @@
 // Event Name
 // Please change the event name text string only
 
-let eventName = "Night Chant";
+let eventName = "Sunset Mist Garden";
 // **********
 
 // Please write that as a variable name for the stats page then add it there. ex. rerunTemplate
 
-let eventVarName = "nightChant";
+let eventVarName = "sunsetMistGarden";
 // *************
 
 // Are the standard wish flower animations used? True for yes, false for no
 
-let standardAnimation = false;
+let standardAnimation = true;
 // ******************
 
 // After making the background video add the video key number to this string.
 
-let youtubeKeyCode = "Z9uqW91FKWM";
+let youtubeKeyCode = "lVLFFoL8fqA";
 // ***************
 
 // plase remember to add a static background picture to the event assets folder for mobile devices.
 
 // What is the rarity of the event karmas?
-let jsonSP = false;
+let jsonSP = true;
 // ************
 let jsonSSR = true;
 // ************

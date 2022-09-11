@@ -1,0 +1,32 @@
+{
+    "eventSSR": [
+        {
+            "rarity": "SSR",
+            "character": "Gavin",
+            "title": "Gift of Life",
+            "stat": "Affinity",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Kiro",
+            "title": "Knowing My Love",
+            "stat": "Affinity",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Lucien",
+            "title": "Lifetime Promise",
+            "stat": "Affinity",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Victor",
+            "title": "Vow of Love",
+            "stat": "Affinity",
+            "king": false
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "eventSR": [
+        {
+            "rarity": "SR",
+            "character": "Gavin",
+            "title": "Intensity",
+            "stat": "Affinity",
+            "king": false
+        },
+        {
+            "rarity": "SR",
+            "character": "Kiro",
+            "title": "Snowdrift",
+            "stat": "Creativity",
+            "king": false
+        }
+    ]
+}

@@ -4,8 +4,13 @@
       max-width: 60rem;
     
     }
-    .wish-icon-grid {
-        height: 85vh;
+
+    .karma-titles {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+  
+    .most-common-rarity {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   
 }
