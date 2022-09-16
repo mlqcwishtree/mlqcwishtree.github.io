@@ -8,7 +8,7 @@ let standardKingR = [];
 let standardR = [];
 
 
-const standardURL = 'standard.json';
+const standardURL = '/standard.json';
 fetch(standardURL)
     .then(function (response) {
         return response.json();
@@ -21,7 +21,7 @@ fetch(standardURL)
         standardSR = jsonObject['standardSR'];
         standardKingR = jsonObject['standardKingR'];
         standardR = jsonObject['standardR'];
-    })
+    });
 
 // Get Karma List from code-of-passionate-love.json
 let eventSP = [];
@@ -33,16 +33,13 @@ fetch(eventURL)
     })
     .then(function (jsonObject) {
         eventSP = jsonObject['eventSP'];
-    })
+    });
 
 window.mobileCheck = function() {
     let check = false;
     (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
-    // console.log(check);
     return check;
 };
-
-// console.log();
 
 
 // Event Drop Rates
@@ -62,8 +59,7 @@ let gold = 100000;
 let gems = 10000000;
 let galaxyWishCoupon = 5000;
 let purchasesLeftToday = 999999;
-let ownLimited = 0;
-// let freeCountdown = 0;
+
 
 let cost10Container = document.getElementById("cost10");
 let cost10IMGContainer = document.getElementById("cost10IMG");
@@ -121,8 +117,7 @@ function addCoupons() {
     updateResources();
 }
 
-// let ownLimitedContainer = document.getElementById("own-limited");
-// ownLimitedContainer.textContent = ownLimited + "/80";
+
 
 let limitContainer = document.getElementById("limit");
 limitContainer.textContent = purchasesLeftToday;
@@ -146,7 +141,6 @@ timesWishedContainer.textContent = timesWished;
 
 // Random decimal from 0 to 1
 function randomDeci() {
-    // console.log(Math.random());
 }
 
 // Random number from 1 to 100 if called with
@@ -157,6 +151,7 @@ function getRandomInt(min, max) {
 }
 
 function draw1() {
+    let karma = "";
     let karmaRoll = getRandomInt(1, 101);
     let karmaDeci = getRandomInt(1, 101);
         
@@ -217,9 +212,8 @@ function buy1() {
     updateResources();
     let timesPulled = 1;
     karmas = [];
-    let karma = draw1()
+    let karma = draw1();
     karmas.push(karma);
-    // console.log(karmas);
     wishAnimation(timesPulled, karmas);
     timesWished = timesWished + 1;
     updateCosts();
@@ -236,7 +230,7 @@ function updateStats(karmas) {
         updateLocalStorage("last1pull", newLocalStorageItem);
 
         // Total times wished
-        let oldLocalStorageItem = JSON.parse(localStorage.getItem('totalTimesPulled'))
+        let oldLocalStorageItem = JSON.parse(localStorage.getItem('totalTimesPulled'));
         newLocalStorageItem = oldLocalStorageItem + 1;
         updateLocalStorage("totalTimesPulled", newLocalStorageItem);
 
@@ -266,12 +260,7 @@ function updateStats(karmas) {
     let oldKarmaObtained = JSON.parse(localStorage.getItem('karmaObtained'));
 
     if (oldKarmaObtained) {
-        // Previous karma obtained
-        // console.log("Previous Karma Obtained.");
-
         let prepedKarmas = oldKarmaObtained;
-
-        // localStorage.clear();
 
         for (let i = 0; i < karmas.length; i++) {
             let karmaCharacter = karmas[i].character;
@@ -302,21 +291,14 @@ function updateStats(karmas) {
         let stringPrepedKarmas = JSON.stringify(prepedKarmas);
         updateLocalStorage("karmaObtained", stringPrepedKarmas);
 
-        // let newKarmaObtained = JSON.parse(localStorage.getItem('karmaObtained'));
-        // console.log(newKarmaObtained);
-
     }
     else {
-        // No previous karma obtained
-        // console.log("No previous karma obtained.");
-
         let prepedKarmas = [];
         
         let firstKarma = karmas[0];
         firstKarma["timesPulled"] = 1;
         prepedKarmas.push(firstKarma);
 
-        // localStorage.clear();
 
         for (let i = 1; i < karmas.length; i++) {
             let karmaCharacter = karmas[i].character;
@@ -346,12 +328,7 @@ function updateStats(karmas) {
 
         let stringPrepedKarmas = JSON.stringify(prepedKarmas);
         updateLocalStorage("karmaObtained", stringPrepedKarmas);
-
-        // let newKarmaObtained = JSON.parse(localStorage.getItem('karmaObtained'));
-        // console.log(newKarmaObtained);
-
     }
-
 }
 
 function updateLocalStorage(setName, setItems) {
@@ -371,7 +348,7 @@ function buy10() {
         gems += 10000;
     }
  
-    updateResources()
+    updateResources();
     let timesPulled = 10;
     karmas = [];
     let gIndex = getRandomInt(0, 11);
@@ -382,83 +359,7 @@ function buy10() {
             karmas.push(draw1());
         }
     }
-
     // Test Karmas
-
-    // karmas =
-    // [
-    //     {
-    //         "rarity": "R",
-    //         "character": "Lucien",
-    //         "title": "Detailed Narration",
-    //         "stat": "Decision",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "R",
-    //         "character": "Lucien",
-    //         "title": "Archive",
-    //         "stat": "Creativity",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "R",
-    //         "character": "Lucien",
-    //         "title": "Detailed Narration",
-    //         "stat": "Decision",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "R",
-    //         "character": "Gavin",
-    //         "title": "Upwind",
-    //         "stat": "Execution",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "SP",
-    //         "character": "Lucien",
-    //         "title": "Law of Gravity",
-    //         "stat": "Execution",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "R",
-    //         "character": "Gavin",
-    //         "title": "Rock and a Hard Place",
-    //         "stat": "Execution",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "R",
-    //         "character": "Gavin",
-    //         "title": "Whetstone",
-    //         "stat": "Execution",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "R",
-    //         "character": "Lucien",
-    //         "title": "Detailed Narration",
-    //         "stat": "Decision",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "SP",
-    //         "character": "Gavin",
-    //         "title": "Dream Traveler",
-    //         "stat": "Creativity",
-    //         "king": "false"
-    //     },
-    //     {
-    //         "rarity": "SP",
-    //         "character": "Lucien",
-    //         "title": "Law of Gravity",
-    //         "stat": "Execution",
-    //         "king": "false"
-    //     }
-    // ];
-
     wishAnimation(timesPulled, karmas);
     timesWished = timesWished + 10;
     updateCosts();
@@ -468,6 +369,7 @@ function buy10() {
 }
 
 function guarenteedSRPlus() {
+    let karma = "";
     let karmaRoll = getRandomInt(1, 101);
     let karmaDeci = getRandomInt(1, 101);
 
@@ -486,7 +388,6 @@ function guarenteedSRPlus() {
 
     if (karma.rarity == "R") {
         karma = guarenteedSRPlus();
-        // console.log("SR guarenteed backup");
     }
 
     return karma;
@@ -541,30 +442,12 @@ function createBackgroundVideo() {
     let appHeight = document.getElementById("app-container").offsetHeight;
 
     if (window.mobileCheck() == true) {
-        document.getElementById("app-container").style.backgroundImage = "url('assets/code-of-passionate-love-bg.jpg')";
+        document.getElementById("app-container").style.backgroundImage = "url('/rerun-assets/code-of-passionate-love-bg.jpg')";
     }
     else {
         let backgroundVideoContainer = document.getElementById("videoBackgroundContainer");
         backgroundVideoContainer.style.width = appWidth;
         backgroundVideoContainer.style.height = appHeight;
-    
-        // // Regular Video
-        // Note that I can't upload a video of this size to github
-        // let backgroundVideo = document.createElement("video");
-        // backgroundVideo.setAttribute("id", "backgroundVideo");
-        // backgroundVideo.autoplay = true;
-        // backgroundVideo.muted = true;
-        // backgroundVideo.loop = true;
-        // backgroundVideo.setAttribute("height", appHeight);
-        
-        // let backgroundSource = document.createElement("source");
-        // backgroundSource.setAttribute("id", "backgroundVideoSource");
-    
-        // backgroundSource.setAttribute("src", "../assets/videos//code-of-love-bg.mp4");
-        // backgroundSource.setAttribute("type", "video/mp4");
-    
-        // backgroundVideo.appendChild(backgroundSource);
-        // backgroundVideoContainer.appendChild(backgroundVideo);
     
         // Youtube Video
         let backgroundVideo = document.createElement("iframe");
@@ -690,7 +573,7 @@ function rarityAnimation(rarity, character) {
 
     let videoContainer = document.getElementById("videoContainer");
     let videoElement = document.createElement("video");
-    // videoElement.autoplay = true;
+  
     videoElement.muted = true;
 
     let height = appContainer.offsetHeight;
@@ -829,7 +712,7 @@ function displayResultsContainer() {
     let resultsContainer = document.getElementById("resultsContainer");
     resultsContainer.setAttribute("height", height + "px");
     resultsContainer.setAttribute("width", width + "px");
-    resultsContainer.style.backgroundImage = 'url("assets/hd-floral-background.png")';
+    resultsContainer.style.backgroundImage = 'url("/rerun-assets/hd-floral-background.png")';
 }
 
 // displays 1 karma
@@ -992,8 +875,8 @@ function displayKarma(karma, displayedKarma, karmas) {
 }
 
 function getKarmaImgURL(karma) {
-    character = karma.character;
-    title = karma.title;
+    let character = karma.character;
+    let title = karma.title;
     character = character.toLowerCase();
     title = title.replace(/\s+/g, '-').toLowerCase();
     let karmaImgURL = "../assets/karma-cg/" + character + "-" + title + ".jpg";
@@ -1427,7 +1310,7 @@ function placeGrids(appWidth) {
 
     // Galaxy Wish Coupon
     let gwcContainer = document.getElementById("gwcContainer");
-    gwcContainer.style.fontSize = fontSize = appWidth / 35 + "px";
+    gwcContainer.style.fontSize = appWidth / 35 + "px";
     gwcContainer.style.height = Math.round(appWidth / 23) + "px";
     gwcContainer.style.marginTop = Math.round(appWidth / 30) + "px";
 
@@ -1451,7 +1334,7 @@ function placeGrids(appWidth) {
 
     // Limited Coupon
     let limitedGwcContainer = document.getElementById("LimitedgwcContainer");
-    limitedGwcContainer.style.fontSize = fontSize = appWidth / 35 + "px";
+    limitedGwcContainer.style.fontSize = appWidth / 35 + "px";
     limitedGwcContainer.style.height = Math.round(appWidth / 23) + "px";
     limitedGwcContainer.style.marginTop = Math.round(appWidth / 30) + "px";
 
@@ -1732,239 +1615,6 @@ function summaryKarmaSizes() {
         element.style.marginLeft = width / 300 + "px";
     });
 }
-
-
-// drop-rate
-function dropRate() {
-    let infoContainer = document.getElementById("infoContainer");
-    infoContainer.style.height = document.getElementById("app-container").offsetHeight;
-    infoContainer.style.width = document.getElementById("app-container").offsetWidth;
-
-    let dropInfo = document.createElement("div");
-    dropInfo.setAttribute("id", "dropInfo");
-    dropInfo.innerHTML = 
-        '<div class="dropInfo">' + 
-            '<div class="back-button" onclick="backHome()">' + 
-                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" id="backSVG">' + 
-                    '<path' + 
-                        ' d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z" />' + 
-                '</svg>' + 
-            '</div>' + 
-            '<h2>Drop Rates in Wish Tree</h2>' + 
-            '<p>The normal drop rates (not during events) in Wish Tree are as follows.</p>' +
-            '<p>Drop rates in gem pool for buying 1 Heart Flower at a time:</p>' + 
-            '<table>' + 
-                '<tr>' + 
-                '<td>SP&SSR</td>' +
-                '<td>1.00%</td>' + 
-                '</tr>' + 
-                '<tr>' + 
-                    '<td>SR</td>' +
-                    '<td>10.00%</td>' +
-                '</tr>' + 
-                '<tr>' + 
-                    '<td>R</td>' +
-                    '<td>89.00%</td>' +
-                '</tr>' +
-            '</table>' +
-            '<p>*You can get a least 1 SR (and above) when buying 10 Heart Flowers at a time.</p>' +
-    '   </div>';
-    infoContainer.appendChild(dropInfo);
-}
-
-// Preview
-function previewKarma() {
-    let infoContainer = document.getElementById("infoContainer");
-    let previewInfoContainer = document.createElement("div");
-    previewInfoContainer.setAttribute("id", "previewInfoContainer");
-    previewInfoContainer.setAttribute("class", "previewInfoContainer");
-    infoContainer.appendChild(previewInfoContainer);
-
-    let previewBox = document.createElement("div");
-    previewBox.setAttribute("id", "previewBox");
-    previewBox.setAttribute("class", "previewBox");
-    previewInfoContainer.appendChild(previewBox);
-
-    let previewTitle = document.createElement("div");
-    previewTitle.setAttribute("id", "previewTitle");
-    previewTitle.setAttribute("class", "previewTitle");
-    previewBox.appendChild(previewTitle);
-
-    let previewTabs = document.createElement("div");
-    previewTabs.setAttribute("id", "previewTabs");
-    previewTabs.setAttribute("class", "previewTabs");
-    previewBox.appendChild(previewTabs);
-
-    let previewTabsUL = document.createElement("ul");
-    previewTabsUL.setAttribute("id", "previewTabs");
-    previewTabsUL.setAttribute("class", "previewTabs");
-    previewTabs.appendChild(previewTabsUL);
-    previewTabsUL.innerHTML = 
-        '<li onclick="showAllPreview()">ALL</li>' +
-        '<li onclick="showVictorPreview()">Victor</li>' +
-        '<li onclick="showLucienPreview()">Lucien</li>' +
-        '<li onclick="showKiroPreview()">Kiro</li>' +
-        '<li onclick="showGavinPreview()">Gavin</li>' +
-        '<li onclick="showOtherPreview()">Other</li>'
-    ;
-
-    let previewThumbnailContainer = document.createElement("div");
-    previewThumbnailContainer.setAttribute("id", "previewThumbnailContainer");
-    previewThumbnailContainer.setAttribute("class", "previewThumbnailContainer");
-    previewBox.appendChild(previewThumbnailContainer);
-
-    let array = standardSP;
-    array.forEach(element => {
-        let character = element.character;
-        let rarity = element.rarity;
-        let stat = element.stat;
-        let title = element.title;
-
-        let previewThumbnailBox = document.createElement("div");
-        previewThumbnailBox.setAttribute("class", "previewThumbnailBox SPpreview ") + stat.toLowerCase();
-        previewThumbnailContainer.appendChild(previewThumbnailBox);
-
-        let previewIconContainer = document.createElement("div");
-        previewIconContainer.setAttribute("class", "previewIconContainer");
-        previewThumbnailBox.appendChild(previewIconContainer);
-
-        let previewRarity = document.createElement("img");
-        previewRarity.setAttribute("class", "previewRarity");
-        previewRarity.setAttribute("alt", rarity);
-        let rarityURL = "../assets/rarity/" + rarity + "-icon.png";
-        previewRarity.setAttribute("src", rarityURL);
-        previewIconContainer.appendChild(previewRarity);
-
-        let previewKarmaImg = document.createElement("img");
-        previewKarmaImg.setAttribute("class", "reviewKarmaImg");
-        previewKarmaImg.setAttribute("alt", character + " " + title);
-        let previewKarmaImgURL = "../assets/karma-tb/" + character.toLowerCase() + "-" + title.replace(/\s+/g, '-').toLowerCase() + "-tb.jpg";
-        previewKarmaImg.setAttribute("src", previewKarmaImgURL);
-        previewIconContainer.appendChild(previewKarmaImg);
-
-        let previewStars = document.createElement("img");
-        previewStars.setAttribute("class", "reviewKarmaImg");
-        previewStars.setAttribute("alt", "1 star");
-        let previewStarsURL = "../assets/resources/stars.png";
-        previewStars.setAttribute("src", previewStarsURL);
-        previewIconContainer.appendChild(previewStars);
-
-        let previewLV = document.createElement("div");
-        previewLV.setAttribute("class", "previewLV");
-        previewIconContainer.appendChild(previewLV);
-
-        let previewLVText = document.createElement("div");
-        previewLVText.setAttribute("class", "previewLVText");
-        previewLVText.textContent = "LV";
-        previewLV.appendChild(previewLVText);
-
-        let previewNumText = document.createElement("div");
-        previewNumText.setAttribute("class", "previewNumText");
-        previewNumText.textContent = "1";
-        previewLV.appendChild(previewNumText);
-
-        let previewKarmaTitle = document.createElement("div");
-        previewKarmaTitle.setAttribute("class", "previewKarmaTitle");
-        previewThumbnailBox.appendChild(previewKarmaTitle);
-
-        let titleText = document.createElement("div");
-        titleText.setAttribute("class", "titleText");
-        titleText.textContent = character + ": " + title;
-        previewKarmaTitle.appendChild(titleText);
-    });
-
-    // array = standardSSR;
-    let gavinSSR = [];
-    let victorSSR = [];
-    let lucienSSR = [];
-    let kiroSSR = [];
-
-    standardSSR.forEach(element => {
-        let character = element.character;
-        if (character == "Gavin") {
-            gavinSSR.push(element);
-        }
-        else if (character == "Victor") {
-            victorSSR.push(element);
-        }
-        else if (character == "Lucien") {
-            lucienSSR.push(element);
-        }
-        else {
-            kiroSSR.push(element);
-        }
-    });
-
-    buildPreviewKarma(gavinSSR, previewBox);
-    buildPreviewKarma(victorSSR, previewBox);
-    buildPreviewKarma(lucienSSR, previewBox);
-    buildPreviewKarma(kiroSSR, previewBox);
-}
-
-function buildPreviewKarma(array, previewBox) {
-    array.forEach(element => {
-        let character = element.character;
-        let rarity = element.rarity;
-        let stat = element.stat;
-        let title = element.title;
-        
-        let summaryKarma = document.createElement("div");
-        summaryKarma.setAttribute("class", "summaryKarma");
-        previewBox.appendChild(summaryKarma);
-
-        let summaryKarmaBox = document.createElement("div");
-        summaryKarmaBox.setAttribute("class", "summaryKarmaBox " + stat.toLowerCase());
-    
-        summaryKarma.appendChild(summaryKarmaBox);
-
-        let summaryRarity = document.createElement("img");
-        summaryRarity.setAttribute("class", "summaryRarity");
-        let rarityURL = "../assets/rarity/" + rarity + "-icon.png";
-        summaryRarity.setAttribute("src", rarityURL);
-        summaryRarity.setAttribute("alt", rarity);
-        summaryKarmaBox.appendChild(summaryRarity);
-
-        let summaryKarmaImg = document.createElement("img");
-        summaryKarmaImg.setAttribute("class", "summaryKarmaImg");
-        let karmaURL = "../assets/karma-tb/" + character.toLowerCase() + "-" + title.replace(/\s+/g, '-').toLowerCase() + "-tb.jpg";
-        summaryKarmaImg.setAttribute("src", karmaURL);
-        summaryKarmaImg.setAttribute("alt", character + "-" + title);
-        summaryKarmaBox.appendChild(summaryKarmaImg);
-
-        let starBox = document.createElement("div");
-        starBox.setAttribute("class", "starBox");
-        starBox.setAttribute("class", "starBox " + stat.toLowerCase());
-        summaryKarmaBox.appendChild(starBox);
-
-        let summaryStars = document.createElement("img");
-        summaryStars.setAttribute("class", "summaryStars");
-        summaryStars.setAttribute("src", "../assets/resources/stars.png");
-        summaryStars.setAttribute("alt", "1star");
-        starBox.appendChild(summaryStars);
-
-        let LVtext = document.createElement("div");
-        LVtext.setAttribute("class", "LVtext");
-        starBox.appendChild(LVtext);
-
-        let LV = document.createElement("div");
-        LV.setAttribute("class", "LV");
-        LV.textContent = "LV";
-        LVtext.appendChild(LV);
-
-        let num = document.createElement("div");
-        num.setAttribute("class", "num");
-        num.textContent = "1";
-        LVtext.appendChild(num);
-
-        let summaryTitle = document.createElement("div");
-        summaryTitle.setAttribute("class", "summaryTitle");
-        summaryTitle.textContent = character + ": " + title;
-        summaryKarma.appendChild(summaryTitle);
-
-        previewBox.appendChild(summaryKarma);
-    });
-}
-
 
 // This needs to be built last so that the dimensions are correct
 if (!document.getElementById("backgroundVideo")) {
