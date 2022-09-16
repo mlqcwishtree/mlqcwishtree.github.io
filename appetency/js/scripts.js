@@ -8,7 +8,7 @@ let standardKingR = [];
 let standardR = [];
 
 
-const standardURL = 'standard.json';
+const standardURL = '/standard.json';
 fetch(standardURL)
     .then(function (response) {
         return response.json();
@@ -429,7 +429,7 @@ function skipVideo() {
 
 function createBackgroundVideo() {
     if (window.mobileCheck() == true) {
-        document.getElementById("app-container").style.backgroundImage = "url('assets/appetency-bg.jpg')";
+        document.getElementById("app-container").style.backgroundImage = "url('/rerun-assets/appetency-bg.jpg')";
     }
     else {
         let appWidth = document.getElementById("app-container").offsetWidth;
@@ -544,7 +544,7 @@ function displayResultsContainer() {
     let resultsContainer = document.getElementById("resultsContainer");
     resultsContainer.setAttribute("height", height + "px");
     resultsContainer.setAttribute("width", width + "px");
-    resultsContainer.style.backgroundImage = 'url("assets/hd-floral-background.png")';
+    resultsContainer.style.backgroundImage = 'url("/rerun-assets/hd-floral-background.png")';
 }
 
 // displays 1 karma
