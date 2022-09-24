@@ -117,13 +117,16 @@ fetch(standardURL)
 if (typeof eventSR !== 'undefined') {
     standardSR = standardSR.concat(eventSR);
 }
-// determining the drop rates
+// Declaring the drop rate variables
 let dropSP = 0;
 let dropEventSSR = 0;
-let dropStandardSSR = 1.5;
+let dropStandardSSR = 1;
 let dropSR = 10;
 let dropR = 100 - dropSP - dropEventSSR - dropStandardSSR - dropSR;
+
+// Checking and updating the drop rate
 if (jsonSR == true && jsonSP == false && jsonSSR == false) {
+    console.log("SR only");
     // eventSR only, and has been merged with standard SR. Drop rates like standard wish tree
     dropSP = 0;
     dropEventSSR = 0;
@@ -133,6 +136,7 @@ if (jsonSR == true && jsonSP == false && jsonSSR == false) {
 }
 else if (jsonSP == true && jsonSSR == false) {
     // Only eventSP
+    console.log("SP");
     dropSP = 1.5;
     dropEventSSR = 0;
     dropStandardSSR = 1;
@@ -140,6 +144,7 @@ else if (jsonSP == true && jsonSSR == false) {
     dropR = 100 - dropSP - dropEventSSR - dropStandardSSR - dropSR;
 }
 else if (jsonSP == true && jsonSSR == true) {
+    console.log("SP and SSR");
     // Event SP and event SSR
     dropSP = 1;
     dropEventSSR = 1;
@@ -147,8 +152,10 @@ else if (jsonSP == true && jsonSSR == true) {
     dropSR = 10;
     dropR = 100 - dropSP - dropEventSSR - dropStandardSSR - dropSR;
 }
-else if (jsonSSR == true && jsonSR == false) {
+else if (jsonSSR == true && jsonSR == false || jsonSSR == true && jsonSR == true ) {
+    console.log("SSR only, or SSR and SR");
     // eventSSR only, I'm assuming that eventSSRs run by themselves if there are no SRs
+    // or eventSSR because eventSR are combined w/ standard sr in the begginging
     dropSP = 0;
     dropEventSSR = 1.5;
     dropStandardSSR = 1;
@@ -156,22 +163,29 @@ else if (jsonSSR == true && jsonSR == false) {
     dropR = 100 - dropSP - dropEventSSR - dropStandardSSR - dropSR;
 }
 else {
-    // I'm assuming that this is a mixed SSR and SR wish event, which runs like a normal SSR event because the SR arrays are merged
+    console.log("Standard Gem Tree");
+    // Standard Wish tree
     dropSP = 0;
-    dropEventSSR = 1.5;
+    dropEventSSR = 0;
     dropStandardSSR = 1;
     dropSR = 10;
     dropR = 100 - dropSP - dropEventSSR - dropStandardSSR - dropSR;
-    // Yes, I know that this could be merged with the case above, but I'm leaving it like this while I'm still seeing if it works
 }
 let minSPnum = 100 - dropSP;
 let minEventSSRnum = minSPnum - dropEventSSR;
 let minStandardSSRnum = minEventSSRnum - dropStandardSSR;
 let minSRnum = minStandardSSRnum - dropSR;
+
+console.log("minSPnum: " + minSPnum);
+console.log("minEventSSRnum: " + minEventSSRnum);
+console.log("minStandardSSRnum: " + minStandardSSRnum);
+console.log("minSRnum: " + minSRnum);
+
+// random decimal
 function rollWithDecimal() {
-    let int = getRandomInt(1, 101);
-    let deci = getRandomInt(0, 10);
-    let secondDeci = getRandomInt(0, 10);
+    let int = getRandomInt(1, 100);
+    let deci = getRandomInt(0, 9);
+    let secondDeci = getRandomInt(0, 9);
     let strNum = int + "." + deci + secondDeci;
     let finalNumber = parseFloat(strNum);
     return finalNumber;
