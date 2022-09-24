@@ -28,9 +28,9 @@ let youtubeKeyCode = "7EyDw9BaG2w";
 // What is the rarity of the event karmas?
 let jsonSP = false;
 // ************
-let jsonSSR = true;
+let jsonSSR = false;
 // ************
-let jsonSR = false;
+let jsonSR = true;
 // ************
 
 // GWC and gems
