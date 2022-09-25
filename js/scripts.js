@@ -9,7 +9,7 @@ else if (spoiler == true) {
 
 function defaultSpoilersTrue() {
 
-    let spoilerTrees = ["appetency"];
+    let spoilerTrees = ["appetency","heart-magic"];
 
     for (let i = 0; i < spoilerTrees.length; i++) {
         let linkElement = document.getElementById(spoilerTrees[i]);
@@ -29,7 +29,7 @@ function toggleSpoilers() {
     if (spoiler == false) {
         let action = confirm("Are you sure you want to show spoilers for content not released in the Global Server? (Spoiler Karma pulled will still be shown on the stats page, even if spoilers is turned back off)");
         if (action) {
-            let spoilerTrees = ["appetency"];
+            let spoilerTrees = ["appetency","heart-magic"];
 
             for (let i = 0; i < spoilerTrees.length; i++) {
                 let linkElement = document.getElementById(spoilerTrees[i]);

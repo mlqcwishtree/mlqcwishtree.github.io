@@ -1,0 +1,32 @@
+{
+    "eventSSR": [
+        {
+            "rarity": "SSR",
+            "character": "Gavin",
+            "title": "Wind Signal",
+            "stat": "Affinity",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Kiro",
+            "title": "Colorful Cruise",
+            "stat": "Affinity",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Lucien",
+            "title": "Rotating Fantasy",
+            "stat": "Affinity",
+            "king": false
+        },
+        {
+            "rarity": "SSR",
+            "character": "Victor",
+            "title": "Midnight Magic",
+            "stat": "Affinity",
+            "king": false
+        }
+    ]
+}

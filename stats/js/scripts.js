@@ -12,6 +12,7 @@ let chineseNewYearTimesPulled = localStorage.getItem("chineseNewYearTimesPulled"
 let christmasFairytaleTimesPulled = localStorage.getItem("christmasFairytaleTimesPulled");
 let dawnGardenTimesPulled = localStorage.getItem("dawnGardenTimesPulled");
 let hereComesTheGroomTimesPulled = localStorage.getItem("hereComesTheGroomTimesPulled");
+let heartMagicTimesPulled = localStorage.getItem("heartMagicTimesPulled");
 
 
 // This is for the tree usage pie chart, add it here in both spots if global
@@ -29,6 +30,7 @@ let allTrees = [
     ['Here Comes the Groom', parseInt(hereComesTheGroomTimesPulled)],
     // Spoiler stars here
     ['Appetency', parseInt(appetencyTimesPulled)],
+    ['Heart Magic', parseInt(heartMagicTimesPulled)]
 ];
 
 let globalTrees = [
@@ -177,7 +179,7 @@ function lastKarmasToHTML(karmas) {
             karmaGroup += "</p>";
         }
         else {
-            let imgElement = "<div class='most-common-img'><img src='../assets/karma-cg/" + character.toLowerCase() + "-" + title.toLowerCase() + ".jpg' alt='" + character + ": " + title + "'></div>";
+            let imgElement = '<div class="most-common-img"><img src="../assets/karma-cg/' + character.toLowerCase() + '-' + title.toLowerCase() + '.jpg" alt="' + character + ': ' + title + '"></div>';
             karmaGroup += imgElement;
 
             let captionElement = "<p class='most-common-caption'>";

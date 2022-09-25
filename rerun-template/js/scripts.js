@@ -21,6 +21,7 @@ let standardAnimation = true;
 // After making the background video add the video key number to this string.
 
 let youtubeKeyCode = "7EyDw9BaG2w";
+
 // ***************
 
 // plase remember to add a static background picture to the event assets folder for mobile devices.
@@ -28,9 +29,9 @@ let youtubeKeyCode = "7EyDw9BaG2w";
 // What is the rarity of the event karmas?
 let jsonSP = false;
 // ************
-let jsonSSR = false;
+let jsonSSR = true;
 // ************
-let jsonSR = true;
+let jsonSR = false;
 // ************
 
 // GWC and gems
