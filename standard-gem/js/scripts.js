@@ -139,7 +139,7 @@ let dropSP = 0;
 let dropEventSSR = 0;
 let dropStandardSSR = 1;
 let dropSR = 10;
-let dropR = 100 - dropSP - dropEventSSR - dropStandardSSR - dropSR;
+letdropR = 100 - dropSP - dropEventSSR - dropStandardSSR - dropSR;
 
 
 let minSPnum = 100 - dropSP;

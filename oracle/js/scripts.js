@@ -166,6 +166,11 @@ let minEventSSRnum = minSPnum - dropEventSSR;
 let minStandardSSRnum = minEventSSRnum - dropStandardSSR;
 let minSRnum = minStandardSSRnum - dropSR;
 
+// console.log("minSPnum: " + minSPnum);
+// console.log("minEventSSRnum: " + minEventSSRnum);
+// console.log("minStandardSSRnum: " + minStandardSSRnum);
+// console.log("minSRnum: " + minSRnum);
+
 
 function draw1() {
     let karma = "";
@@ -188,15 +193,15 @@ function draw1() {
         }
     }
     else {
-        if (karmaRoll > minSPnum) {
+        if (karmaRoll >= minEventSSRnum) {
             let karmaArray = "eventSSR";
             karma = pickKarma(karmaArray);
         }
-        else if (karmaRoll > minStandardSSRnum) {
+        else if (karmaRoll >= minStandardSSRnum) {
             let karmaArray = "SP or SSR";
             karma = pickKarma(karmaArray);
         }
-        else if (karmaRoll > minSRnum) {
+        else if (karmaRoll >= minSRnum) {
             let karmaArray = "SR";
             karma = pickKarma(karmaArray);
         }
@@ -402,14 +407,13 @@ function check10() {
     return karmas;
 }
 function guarenteedSRPlus() {
-    let karmaRoll = getRandomInt(1, 101);
-    let karmaDeci = getRandomInt(1, 101);
+    let karmaRoll = rollWithDecimal();
     let karma = "";
-    if (karmaRoll >= 99 || karmaRoll > 98 && karmaDeci >= 50) {
+    if (karmaRoll > minEventSSRnum) {
         let karmaArray = "eventSSR";
         karma = pickKarma(karmaArray);
     }
-    else if (karmaRoll >= 98 || karmaRoll > 97 && karmaDeci >= 50) {
+    else if (karmaRoll > minStandardSSRnum) {
         let karmaArray = "SP or SSR";
         karma = pickKarma(karmaArray);
     }
