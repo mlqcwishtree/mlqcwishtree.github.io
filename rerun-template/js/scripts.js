@@ -466,8 +466,7 @@ function check10() {
     return karmas;
 }
 function guarenteedSRPlus() {
-    let karmaRoll = getRandomInt(1, 101);
-    let karmaDeci = getRandomInt(1, 101);
+    let karmaRoll = rollWithDecimal();
     let karma = "";
     if (karmaRoll >= 99 || karmaRoll > 98 && karmaDeci >= 50) {
         let karmaArray = "eventSSR";
