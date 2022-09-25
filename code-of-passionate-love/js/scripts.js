@@ -198,8 +198,7 @@ let minSRnum = minStandardSSRnum - dropSR;
 
 function draw1() {
     let karma = "";
-    let karmaRoll = getRandomInt(1, 101);
-    let karmaDeci = getRandomInt(1, 101);
+    let karmaRoll = rollWithDecimal();
         
 
     let kingCheck = getRandomInt(1, 101);
@@ -408,14 +407,13 @@ function buy10() {
 }
 
 function guarenteedSRPlus() {
-    let karmaRoll = getRandomInt(1, 101);
-    let karmaDeci = getRandomInt(1, 101);
+    let karmaRoll = rollWithDecimal();
     let karma = "";
-    if (karmaRoll >= 99 || karmaRoll > 98 && karmaDeci >= 50) {
+    if (karmaRoll > minEventSSRnum) {
         let karmaArray = "eventSSR";
         karma = pickKarma(karmaArray);
     }
-    else if (karmaRoll >= 98 || karmaRoll > 97 && karmaDeci >= 50) {
+    else if (karmaRoll > minStandardSSRnum) {
         let karmaArray = "SP or SSR";
         karma = pickKarma(karmaArray);
     }
