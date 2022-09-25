@@ -136,6 +136,16 @@ let timesWishedContainer = document.getElementById("redeemNUM");
 timesWishedContainer.textContent = timesWished;
 
 // Random number generators
+let dropSP = 0;
+let dropEventSSR = 1.5;
+let dropStandardSSR = 1;
+let dropSR = 10;
+let dropR = 100 - dropSP - dropEventSSR - dropStandardSSR - dropSR;
+
+let minSPnum = 100 - dropSP;
+let minEventSSRnum = minSPnum - dropEventSSR;
+let minStandardSSRnum = minEventSSRnum - dropStandardSSR;
+let minSRnum = minStandardSSRnum - dropSR;
 
 // Random number from 1 to 100 if called with
 function getRandomInt(min, max) {
@@ -143,10 +153,18 @@ function getRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
+// random decimal
+function rollWithDecimal() {
+    let int = getRandomInt(1, 100);
+    let deci = getRandomInt(0, 9);
+    let secondDeci = getRandomInt(0, 9);
+    let strNum = int + "." + deci + secondDeci;
+    let finalNumber = parseFloat(strNum);
+    return finalNumber;
+}
 
 function draw1() {
-    let karmaRoll = getRandomInt(1, 101);
-    let karmaDeci = getRandomInt(1, 101);
+    let karmaRoll = rollWithDecimal();
     let karma = "";
 
     let kingCheck = getRandomInt(1, 101);
@@ -165,15 +183,15 @@ function draw1() {
         }
     }
     else {
-        if (karmaRoll >= 99 || karmaRoll > 98 && karmaDeci >= 50) {
+        if (karmaRoll >= minEventSSRnum) {
             let karmaArray = "eventSSR";
             karma = pickKarma(karmaArray);
         }
-        else if (karmaRoll >= 98 || karmaRoll > 97 && karmaDeci >= 50) {
+        else if (karmaRoll >= minStandardSSRnum) {
             let karmaArray = "SP or SSR";
             karma = pickKarma(karmaArray);
         }
-        else if (karmaRoll >= 88 || karmaRoll > 87 && karmaDeci >= 50) {
+        else if (karmaRoll >= minSRnum) {
             let karmaArray = "SR";
             karma = pickKarma(karmaArray);
         }
@@ -326,26 +344,8 @@ function updateStats(karmas) {
 function updateLocalStorage(setName, setItems) {
     localStorage.setItem(setName, setItems);
 }
-// random decimal
-function rollWithDecimal() {
-    let int = getRandomInt(1, 100);
-    let deci = getRandomInt(0, 9);
-    let secondDeci = getRandomInt(0, 9);
-    let strNum = int + "." + deci + secondDeci;
-    let finalNumber = parseFloat(strNum);
-    return finalNumber;
-}
 
-let dropSP = 0;
-let dropEventSSR = 1.5;
-let dropStandardSSR = 1;
-let dropSR = 10;
-let dropR = 100 - dropSP - dropEventSSR - dropStandardSSR - dropSR;
 
-let minSPnum = 100 - dropSP;
-let minEventSSRnum = minSPnum - dropEventSSR;
-let minStandardSSRnum = minEventSSRnum - dropStandardSSR;
-let minSRnum = minStandardSSRnum - dropSR;
 
 
 function buy10() {
@@ -398,14 +398,13 @@ function check10() {
     return karmas;
 }
 function guarenteedSRPlus() {
-    let karmaRoll = getRandomInt(1, 101);
-    let karmaDeci = getRandomInt(1, 101);
+    let karmaRoll = rollWithDecimal();
     let karma = "";
-    if (karmaRoll >= 99 || karmaRoll > 98 && karmaDeci >= 50) {
+    if (karmaRoll >= minEventSSRnum) {
         let karmaArray = "eventSSR";
         karma = pickKarma(karmaArray);
     }
-    else if (karmaRoll >= 98 || karmaRoll > 97 && karmaDeci >= 50) {
+    else if (karmaRoll >= minStandardSSRnum) {
         let karmaArray = "SP or SSR";
         karma = pickKarma(karmaArray);
     }
