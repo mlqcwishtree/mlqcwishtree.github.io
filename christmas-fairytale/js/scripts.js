@@ -126,7 +126,7 @@ let dropR = 100 - dropSP - dropEventSSR - dropStandardSSR - dropSR;
 
 // Checking and updating the drop rate
 if (jsonSR == true && jsonSP == false && jsonSSR == false) {
-    // console.log("SR only");
+    console.log("SR only");
     // eventSR only, and has been merged with standard SR. Drop rates like standard wish tree
     dropSP = 0;
     dropEventSSR = 0;
@@ -136,7 +136,7 @@ if (jsonSR == true && jsonSP == false && jsonSSR == false) {
 }
 else if (jsonSP == true && jsonSSR == false) {
     // Only eventSP
-    // console.log("SP");
+    console.log("SP");
     dropSP = 1.5;
     dropEventSSR = 0;
     dropStandardSSR = 1;
@@ -144,7 +144,7 @@ else if (jsonSP == true && jsonSSR == false) {
     dropR = 100 - dropSP - dropEventSSR - dropStandardSSR - dropSR;
 }
 else if (jsonSP == true && jsonSSR == true) {
-    // console.log("SP and SSR");
+    console.log("SP and SSR");
     // Event SP and event SSR
     dropSP = 1;
     dropEventSSR = 1;
@@ -153,7 +153,7 @@ else if (jsonSP == true && jsonSSR == true) {
     dropR = 100 - dropSP - dropEventSSR - dropStandardSSR - dropSR;
 }
 else if (jsonSSR == true && jsonSR == false || jsonSSR == true && jsonSR == true ) {
-    // console.log("SSR only, or SSR and SR");
+    console.log("SSR only, or SSR and SR");
     // eventSSR only, I'm assuming that eventSSRs run by themselves if there are no SRs
     // or eventSSR because eventSR are combined w/ standard sr in the begginging
     dropSP = 0;
@@ -176,10 +176,10 @@ let minEventSSRnum = minSPnum - dropEventSSR;
 let minStandardSSRnum = minEventSSRnum - dropStandardSSR;
 let minSRnum = minStandardSSRnum - dropSR;
 
-// console.log("minSPnum: " + minSPnum);
-// console.log("minEventSSRnum: " + minEventSSRnum);
-// console.log("minStandardSSRnum: " + minStandardSSRnum);
-// console.log("minSRnum: " + minSRnum);
+console.log("minSPnum: " + minSPnum);
+console.log("minEventSSRnum: " + minEventSSRnum);
+console.log("minStandardSSRnum: " + minStandardSSRnum);
+console.log("minSRnum: " + minSRnum);
 
 // random decimal
 function rollWithDecimal() {
@@ -466,14 +466,13 @@ function check10() {
     return karmas;
 }
 function guarenteedSRPlus() {
-    let karmaRoll = getRandomInt(1, 101);
-    let karmaDeci = getRandomInt(1, 101);
+    let karmaRoll = rollWithDecimal();
     let karma = "";
-    if (karmaRoll >= 99 || karmaRoll > 98 && karmaDeci >= 50) {
+    if (karmaRoll > minEventSSRnum) {
         let karmaArray = "eventSSR";
         karma = pickKarma(karmaArray);
     }
-    else if (karmaRoll >= 98 || karmaRoll > 97 && karmaDeci >= 50) {
+    else if (karmaRoll > minStandardSSRnum) {
         let karmaArray = "SP or SSR";
         karma = pickKarma(karmaArray);
     }

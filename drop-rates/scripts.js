@@ -1,10 +1,10 @@
 // Edit these here to test different types of trees
 
 // Test with eventSP
-let jsonSP = true;
+let jsonSP = false;
 
 // Test with event SSR
-let jsonSSR = true;
+let jsonSSR = false;
 
 // Test with event SR
 let jsonSR = false;

@@ -124,9 +124,28 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
+// random decimal
+function rollWithDecimal() {
+    let int = getRandomInt(1, 100);
+    let deci = getRandomInt(0, 9);
+    let secondDeci = getRandomInt(0, 9);
+    let strNum = int + "." + deci + secondDeci;
+    let finalNumber = parseFloat(strNum);
+    return finalNumber;
+}
+
+
+let dropStandardSSR = 1;
+let dropSR = 10;
+let dropR = 100 - dropStandardSSR - dropSR;
+
+
+let minStandardSSRnum = 100 - dropStandardSSR;
+let minSRnum = minStandardSSRnum - dropSR;
+
 function draw1() {
     let karma = "";
-    let karmaRoll = getRandomInt(1, 101);
+    let karmaRoll = rollWithDecimal();
 
     let kingCheck = getRandomInt(1, 101);
     if (kingCheck > 98) {
@@ -144,11 +163,11 @@ function draw1() {
         }
     }
     else {
-        if (karmaRoll > 99) {
+        if (karmaRoll > minStandardSSRnum) {
             let karmaArray = "SP or SSR";
             karma = pickKarma(karmaArray);
         }
-        else if (karmaRoll > 89) {
+        else if (karmaRoll > minSRnum) {
             let karmaArray = "SR";
             karma = pickKarma(karmaArray);
         }
@@ -301,7 +320,28 @@ function updateStats(karmas) {
 function updateLocalStorage(setName, setItems) {
     localStorage.setItem(setName, setItems);
 }
-
+function check10() {
+    let initial10 = [];
+    let atLeast1 = false;
+    for (let i = 0; i < 10; i++) {
+        initial10.push(draw1());
+    }
+    for (let i = 0; i < initial10.length; i++) {
+        let rarity = initial10[i].rarity;
+        if (rarity == "SR" || rarity == "SSR" || rarity == "SP") {
+            atLeast1 = true;
+        }
+    }
+    if (atLeast1 == true) {
+        karmas = initial10;
+    }
+    else {
+        let gIndex = getRandomInt(0, 11);
+        initial10[gIndex] = guarenteedSRPlus();
+        karmas = initial10;
+    }
+    return karmas;
+}
 function buy10() {
     if (galaxyWishCoupon >= 10) {
         galaxyWishCoupon -= 10;
@@ -317,15 +357,7 @@ function buy10() {
     updateResources();
     let timesPulled = 10;
     karmas = [];
-    let gIndex = getRandomInt(0, 11);
-    for (let i = 0; i < 10; i++) {
-        if (i == gIndex) {
-            karmas.push(guarenteedSRPlus());
-        } else {
-            karmas.push(draw1());
-        }
-    }
-    // Test Karmas
+    karmas = check10();
     wishAnimation(timesPulled, karmas);
     timesWished = timesWished + 10;
     updateCosts();
@@ -336,9 +368,14 @@ function buy10() {
 }
 
 function guarenteedSRPlus() {
-    let karma = "";
     let karmaRoll = getRandomInt(1, 101);
-    if (karmaRoll > 99) {
+    let karmaDeci = getRandomInt(1, 101);
+    let karma = "";
+    if (karmaRoll >= 99 || karmaRoll > 98 && karmaDeci >= 50) {
+        let karmaArray = "eventSSR";
+        karma = pickKarma(karmaArray);
+    }
+    else if (karmaRoll >= 98 || karmaRoll > 97 && karmaDeci >= 50) {
         let karmaArray = "SP or SSR";
         karma = pickKarma(karmaArray);
     }

@@ -326,6 +326,27 @@ function updateStats(karmas) {
 function updateLocalStorage(setName, setItems) {
     localStorage.setItem(setName, setItems);
 }
+// random decimal
+function rollWithDecimal() {
+    let int = getRandomInt(1, 100);
+    let deci = getRandomInt(0, 9);
+    let secondDeci = getRandomInt(0, 9);
+    let strNum = int + "." + deci + secondDeci;
+    let finalNumber = parseFloat(strNum);
+    return finalNumber;
+}
+
+let dropSP = 0;
+let dropEventSSR = 1.5;
+let dropStandardSSR = 1;
+let dropSR = 10;
+let dropR = 100 - dropSP - dropEventSSR - dropStandardSSR - dropSR;
+
+let minSPnum = 100 - dropSP;
+let minEventSSRnum = minSPnum - dropEventSSR;
+let minStandardSSRnum = minEventSSRnum - dropStandardSSR;
+let minSRnum = minStandardSSRnum - dropSR;
+
 
 function buy10() {
     if (galaxyWishCoupon >= 10) {
@@ -343,14 +364,7 @@ function buy10() {
     updateResources();
     let timesPulled = 10;
     karmas = [];
-    let gIndex = getRandomInt(0, 11);
-    for (let i = 0; i < 10; i++) {
-        if (i == gIndex) {
-            karmas.push(guarenteedSRPlus());
-        } else {
-            karmas.push(draw1());
-        }
-    }
+    karmas = check10();
 
     // Test karma here 
 
@@ -361,12 +375,32 @@ function buy10() {
     updatePurchaseLimit();
     updateStats(karmas);
 }
-
+function check10() {
+    let initial10 = [];
+    let atLeast1 = false;
+    for (let i = 0; i < 10; i++) {
+        initial10.push(draw1());
+    }
+    for (let i = 0; i < initial10.length; i++) {
+        let rarity = initial10[i].rarity;
+        if (rarity == "SR" || rarity == "SSR" || rarity == "SP") {
+            atLeast1 = true;
+        }
+    }
+    if (atLeast1 == true) {
+        karmas = initial10;
+    }
+    else {
+        let gIndex = getRandomInt(0, 11);
+        initial10[gIndex] = guarenteedSRPlus();
+        karmas = initial10;
+    }
+    return karmas;
+}
 function guarenteedSRPlus() {
     let karmaRoll = getRandomInt(1, 101);
     let karmaDeci = getRandomInt(1, 101);
     let karma = "";
-
     if (karmaRoll >= 99 || karmaRoll > 98 && karmaDeci >= 50) {
         let karmaArray = "eventSSR";
         karma = pickKarma(karmaArray);
@@ -379,7 +413,6 @@ function guarenteedSRPlus() {
         let karmaArray = "SR";
         karma = pickKarma(karmaArray);
     }
-
     return karma;
 }
 
