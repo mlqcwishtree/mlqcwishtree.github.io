@@ -56,14 +56,14 @@ function updateCosts() {
     if (galaxyWishCoupon > 0) {
         cost10Container.textContent = 10;
         cost10IMGContainer.setAttribute("src", "../assets/resources/galaxy-wish-coupon.png");
-    
+
         cost1Container.textContent = 1;
         cost1IMGContainer.setAttribute("src", "../assets/resources/galaxy-wish-coupon.png");
     }
     else {
         cost10Container.textContent = 1800;
         cost10IMGContainer.setAttribute("src", "../assets/resources/gem.png");
-        
+
         cost1Container.textContent = 200;
         cost1IMGContainer.setAttribute("src", "../assets/resources/gem.png");
     }
@@ -135,12 +135,16 @@ function rollWithDecimal() {
 }
 
 
+let dropSP = 0;
+let dropEventSSR = 0;
 let dropStandardSSR = 1;
 let dropSR = 10;
-let dropR = 100 - dropStandardSSR - dropSR;
+let dropR = 100 - dropSP - dropEventSSR - dropStandardSSR - dropSR;
 
 
-let minStandardSSRnum = 100 - dropStandardSSR;
+let minSPnum = 100 - dropSP;
+let minEventSSRnum = minSPnum - dropEventSSR;
+let minStandardSSRnum = minEventSSRnum - dropStandardSSR;
 let minSRnum = minStandardSSRnum - dropSR;
 
 function draw1() {
@@ -281,7 +285,7 @@ function updateStats(karmas) {
     else {
         // No previous karma obtained
         let prepedKarmas = [];
-        
+
         let firstKarma = karmas[0];
         firstKarma["timesPulled"] = 1;
         prepedKarmas.push(firstKarma);
@@ -368,14 +372,13 @@ function buy10() {
 }
 
 function guarenteedSRPlus() {
-    let karmaRoll = getRandomInt(1, 101);
-    let karmaDeci = getRandomInt(1, 101);
+    let karmaRoll = rollWithDecimal();
     let karma = "";
-    if (karmaRoll >= 99 || karmaRoll > 98 && karmaDeci >= 50) {
+    if (karmaRoll > minEventSSRnum) {
         let karmaArray = "eventSSR";
         karma = pickKarma(karmaArray);
     }
-    else if (karmaRoll >= 98 || karmaRoll > 97 && karmaDeci >= 50) {
+    else if (karmaRoll > minStandardSSRnum) {
         let karmaArray = "SP or SSR";
         karma = pickKarma(karmaArray);
     }
@@ -430,7 +433,7 @@ function SPAnimation(title, character) {
 
     let videoContainer = document.getElementById("videoContainer");
     let videoElement = document.createElement("video");
-   
+
     videoElement.muted = true;
 
     let height = appContainer.offsetHeight;
@@ -450,7 +453,7 @@ function SPAnimation(title, character) {
 
 
     videoElement.play();
-    videoElement.addEventListener('ended', function() { videoElement.remove(); });
+    videoElement.addEventListener('ended', function () { videoElement.remove(); });
 }
 
 
@@ -463,29 +466,29 @@ function finalSPAnimation(karma) {
 
         if (!document.getElementById("finalAnimation")) {
             let appContainer = document.getElementById("app-container");
-    
+
             let videoContainer = document.getElementById("videoContainer");
             let videoElement = document.createElement("video");
             videoElement.setAttribute("id", "finalAnimation");
-                
+
             videoElement.muted = true;
-            
+
             let height = appContainer.offsetHeight;
             let width = appContainer.offsetWidth;
-            
+
             videoElement.setAttribute("height", height);
             videoElement.setAttribute("width", width);
-            
+
             videoContainer.appendChild(videoElement);
-            
+
             let sourceElement = document.createElement("source");
             sourceElement.setAttribute("type", "video/mp4");
             videoElement.appendChild(sourceElement);
-        
-            sourceElement.setAttribute("src", "../assets/videos/sp" + "-" + character.toLowerCase() + "-2.mp4");    
+
+            sourceElement.setAttribute("src", "../assets/videos/sp" + "-" + character.toLowerCase() + "-2.mp4");
             videoElement.play();
-            videoElement.addEventListener('ended', function() { videoElement.remove(); });
-        }    
+            videoElement.addEventListener('ended', function () { videoElement.remove(); });
+        }
     }
 }
 
@@ -517,7 +520,7 @@ function wishAnimation(timesPulled, karmas) {
     }
 
     videoElement.play();
-    videoElement.addEventListener('ended', function() { videoElement.remove(); });
+    videoElement.addEventListener('ended', function () { videoElement.remove(); });
 
     displayResults(karmas);
 }
@@ -545,7 +548,7 @@ function rarityAnimation(rarity, character) {
     sourceElement.setAttribute("src", "../assets/videos/" + rarity.toLowerCase() + "-" + character.toLowerCase() + ".mp4");
 
     videoElement.play();
-    videoElement.addEventListener('ended', function() { videoElement.remove(); });
+    videoElement.addEventListener('ended', function () { videoElement.remove(); });
 
 }
 
@@ -765,18 +768,18 @@ function removeDisplayedKarma(karmas, displayedKarma, karma) {
 }
 
 function checkForSpecial(karmas, displayedKarma) {
-    
+
     specialRemoveDisplayedKarma(karmas, displayedKarma);
-    
+
     let SSRorSP = false;
-       
+
     while (SSRorSP == false || displayedKarma < 9) {
 
         if (karmas[displayedKarma].rarity == "SP" || karmas[displayedKarma].rarity == "SSR") {
             if (displayedKarma != 0) {
 
                 SSRorSP = true;
-                
+
                 break;
             } else {
                 displayedKarma += 1;
@@ -828,7 +831,7 @@ function backHome() {
         while (resultsContainer.firstChild) {
             resultsContainer.removeChild(resultsContainer.firstChild);
         }
-    
+
         resultsContainer.style.height = null;
         resultsContainer.style.width = null;
     }
@@ -855,7 +858,7 @@ function displayThumbnails(karmas) {
     clickContainer.style.width = document.getElementById("app-container").offsetWidth;
     resultsContainer.appendChild(clickContainer);
 
-    
+
     clickContainer.style.height = "100%";
 
     let karmaHeader = document.createElement("div");
@@ -873,7 +876,7 @@ function displayThumbnails(karmas) {
     summaryBox.setAttribute("id", "summaryBox");
     summaryBox.setAttribute("class", "summaryBox");
     clickContainer.appendChild(summaryBox);
-    
+
 
     for (let i = 0; i < karmas.length; i++) {
         let rarity = karmas[i].rarity;
@@ -1348,7 +1351,7 @@ function summaryKarmaSizes() {
     elements = document.querySelectorAll('.summaryKarmaBox');
     elements.forEach(element => {
         element.style.gridTemplateColumns = width / 18 + "px" + " 1fr";
-        element.style.gridTemplateRows = width / 30 +"px" + " 1fr " + width / 15 + "px";
+        element.style.gridTemplateRows = width / 30 + "px" + " 1fr " + width / 15 + "px";
     });
 
     elements = document.querySelectorAll('.summaryKarma');
