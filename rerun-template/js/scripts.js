@@ -484,7 +484,12 @@ function guarenteedSRPlus() {
     return karma;
 }
 function pickKarma(karmaArray) {
-    if (karmaArray == "eventSSR") {
+    if (karmaArray == "eventSP") {
+        let index = getRandomInt(0, eventSP.length);
+        let karma = eventSP[index];
+        return karma;
+    }
+    else if (karmaArray == "eventSSR") {
         let index = getRandomInt(0, eventSSR.length);
         let karma = eventSSR[index];
         return karma;
@@ -758,6 +763,7 @@ function removeDisplayedKarma(karmas, displayedKarma, karma) {
         displayThumbnails(karmas);
     }
     else if (karmas.length == 1) {
+        finalSPAnimation(karma);
         displayThumbnails(karmas);
     }
     else {

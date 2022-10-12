@@ -1,0 +1,32 @@
+{
+    "eventSP": [
+        {
+            "rarity": "SP",
+            "character": "Gavin",
+            "title": "Splendid Glimpse",
+            "stat": "Decision",
+            "king": false
+        },
+        {
+            "rarity": "SP",
+            "character": "Kiro",
+            "title": "Poetry and Wine",
+            "stat": "Affinity",
+            "king": false
+        },
+        {
+            "rarity": "SP",
+            "character": "Lucien",
+            "title": "Bound by Love",
+            "stat": "Creativity",
+            "king": false
+        },
+        {
+            "rarity": "SP",
+            "character": "Victor",
+            "title": "Taste of Life",
+            "stat": "Execution",
+            "king": false
+        }
+    ]
+}
