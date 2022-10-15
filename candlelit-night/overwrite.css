@@ -1,14 +1,15 @@
 .pull10 {
-    background: rgb(235,186,173);
-    background: linear-gradient(68deg, rgba(235,186,173,1) 0%, rgba(221,127,128,1) 100%);
+  background: #ebbaad;
+  background: linear-gradient(68deg, #ebbaad 0%, #dd7f80 100%);
 }
 
 .text-container {
-    background-color: transparent;
-    color: white;
+  background-color: transparent;
+  color: white;
 }
 
 .redeem-btn {
-    background-color: #e5b88f;
-    border-color: #dcc29d;
+  background-color: #e5b88f;
+  border-color: #dcc29d;
 }
+/*# sourceMappingURL=overwrite.css.map */

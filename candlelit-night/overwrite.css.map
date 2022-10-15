@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,OAAO,CAAC;EACJ,UAAU,EAAE,OAAgB;EAC5B,UAAU,EAAE,gDAAwE;CACvF;;AAED,AAAA,eAAe,CAAC;EACZ,gBAAgB,EAAE,WAAW;EAC7B,KAAK,EAAE,KAAK;CACf;;AAED,AAAA,WAAW,CAAC;EACR,gBAAgB,EAAE,OAAO;EACzB,YAAY,EAAE,OAAO;CACxB",
+    "sources": [
+        "overwrite.scss"
+    ],
+    "names": [],
+    "file": "overwrite.css"
+}
